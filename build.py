@@ -226,7 +226,7 @@ def page_index():
         ('10', '+', 'client accounts', 'Managed end to end, with repeat work from retained clients'),
     ]
     ledger = ''.join(f'<div class="cell"><p class="disp big"><span data-count="{n}" data-suf="{s}">{n}{s}</span></p><p class="what">{w}</p><p class="where">{e(x)}</p></div>' for n, s, w, x in results)
-    ledger += '<div class="cell"><p class="disp big">Four</p><p class="what">new client deals won</p><p class="where">Creative-services deals closed through pitches, meetings and follow-ups</p></div>'
+    ledger += '<div class="cell"><p class="disp big"><span data-count="4" data-suf="">4</span></p><p class="what">new client deals won</p><p class="where">Creative-services deals closed through pitches, meetings and follow-ups</p></div>'
 
     cards = [
         ('work.html#creative', 'assets/revcore-z4.webp', 'RevCore Autos thumbnail of a BMW Z4 exhaust modification', 'RevCore Autos, YouTube', 'Content for a 54.9K-subscriber channel', 'Repair-story videos, short-form edits and click-worthy thumbnails for an automotive workshop.'),
