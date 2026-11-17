@@ -237,7 +237,7 @@ h1,h2,h3,p{margin:0}
 .sc-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;animation:fade .9s .45s ease both}
 .sc-row .sc-card{gap:6px;min-height:180px;position:relative;overflow:hidden}
 .sc-row .sc-top{margin-bottom:auto;padding-bottom:16px;padding-right:44px}
-.sc-mid{font-size:clamp(22px,2.2vw,30px);line-height:1.05}
+.sc-mid{font-size:clamp(34px,3.4vw,48px);line-height:1}
 .sc-sub{font-size:13px;color:var(--mute)}
 .sc-uth{background:#c4161c;border-color:#c4161c;transition:transform .3s}
 .sc-uth:hover{transform:translateY(-3px);color:var(--smoke)}
@@ -423,6 +423,7 @@ tr.total td{font-weight:700;border-bottom:none;background:var(--ink-3)}
   :root{--pad:20px}
   body{font-size:16px}
   .head-right .btn{display:none}
+  .hero h1 .line,.hero h1 .line span{display:inline;animation:none}
   .reel-grid,.thumb-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .grid-3,.wide-grid,.stat-cards,.yt-grid,.phases,.steps,.creative-grid{grid-template-columns:minmax(0,1fr)}
   .creative-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
