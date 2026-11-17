@@ -286,45 +286,30 @@ def page_index():
 </div>
 <p class="note enter enter-4">Clients include Rapido, Kapiva, Signature Global and TPH Group.</p>
 </div>
-<div class="stage enter enter-3" data-stage>
-<p class="sr-only">Three examples of my work, shown in turn: real-estate lead ads on Meta and Google, YouTube thumbnails for RevCore Autos, and U'th Times growing from 25K to 110K followers.</p>
-<div class="stage-glow" aria-hidden="true"></div>
-<div class="phone" aria-hidden="true"><div class="screen">
-<div class="scr scr-ad is-on" data-scene="0">
-<div class="ig-top"><span class="ig-av">SG</span><span><b>Signature Global</b><i>Sponsored</i></span></div>
-<div class="ig-img"><img src="assets/hero/sg-ad.webp" alt="" width="400" height="711" fetchpriority="high"></div>
-<div class="ig-cta"><span>Learn more</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
-<span class="tap"></span>
+<div class="svcx enter enter-3" data-svcx aria-label="Services">
+<div class="svcx-head"><span class="live"></span>What I run for clients</div>
+<div class="sx is-on" data-i="0">
+<div class="sx-txt"><b>Performance marketing</b><span>Meta and Google Ads, built for leads</span></div>
+<div class="sx-viz funnel" aria-hidden="true">
+<span class="fn"><i style="--w:100px"></i><em>Reach</em></span>
+<span class="fn"><i style="--w:62px"></i><em>Clicks</em></span>
+<span class="fn"><i style="--w:28px"></i><em>Leads</em></span>
+<span class="drops"><b></b><b></b><b></b></span>
 </div>
-<div class="scr scr-yt" data-scene="1">
-<div class="yt-bar"><span class="yt-logo"></span><b>RevCore Autos</b></div>
-<div class="yt-item"><img data-src="assets/hero/rc-z4.webp" alt="" width="560" height="315"><span class="yt-meta"><b>BMW Z4, crazy exhaust modification</b><i>RevCore Autos</i></span></div>
-<div class="yt-item"><img data-src="assets/hero/rc-swift.webp" alt="" width="560" height="315"><span class="yt-meta"><b>Swift destroyed by Thar Roxx</b><i>RevCore Autos</i></span></div>
 </div>
-<div class="scr scr-ig" data-scene="2">
-<div class="pf-head"><img data-src="assets/uth-times-frame.webp" alt="" width="720" height="406"></div>
-<div class="pf-stats"><span><b data-from="25" data-to="110">25K</b><i>followers</i></span><span><b>6</b><i>months</i></span></div>
-<div class="pf-tabs"><b>Posts</b><span>Reels</span><span>Videos</span></div><div class="pf-grid"><img data-src="https://i.ytimg.com/vi/YAI696Hz72k/mqdefault.jpg" alt="" width="320" height="180"><img data-src="https://i.ytimg.com/vi/y7WFdvClz8w/mqdefault.jpg" alt="" width="320" height="180"><img data-src="https://i.ytimg.com/vi/q6yOzMhdrzU/mqdefault.jpg" alt="" width="320" height="180"></div>
+<div class="sx" data-i="1">
+<div class="sx-txt"><b>Social media management</b><span>Calendars, content and publishing</span></div>
+<div class="sx-viz cal" aria-hidden="true">
+<span class="day"><em>M</em><i class="p reel"></i></span><span class="day"><em>T</em></span><span class="day"><em>W</em><i class="p post"></i></span><span class="day"><em>T</em><i class="p story"></i></span><span class="day"><em>F</em><i class="p reel"></i></span><span class="day"><em>S</em><i class="p post"></i></span><span class="day"><em>S</em></span>
 </div>
-</div></div>
-<div class="float f-ad is-on" data-scene="0" aria-hidden="true">
-<span class="fk"><span class="live"></span>Meta + Google Ads, real-estate leads</span>
-<span class="fbars"><i style="--h:34%;--d:0ms"></i><i style="--h:42%;--d:45ms"></i><i style="--h:57%;--d:90ms"></i><i style="--h:69%;--d:135ms"></i><i style="--h:85%;--d:180ms"></i><i style="--h:93%;--d:225ms"></i><i style="--h:100%;--d:270ms" class=pk></i><i style="--h:94%;--d:315ms"></i><i style="--h:90%;--d:360ms"></i><i style="--h:85%;--d:405ms"></i><i style="--h:78%;--d:450ms"></i><i style="--h:70%;--d:495ms"></i><i style="--h:58%;--d:540ms"></i></span>
-<span class="ft"><b>850 leads</b> in 90 days at ₹1,752 each</span>
 </div>
-<div class="float f-yt" data-scene="1" aria-hidden="true">
-<span class="fk">YouTube, RevCore Autos</span>
-<span class="ft"><b>Thumbnails and edits</b> for a 54.9K-subscriber channel</span>
+<div class="sx" data-i="2">
+<div class="sx-txt"><b>Client servicing</b><span>Briefs, timelines, reviews, reports</span></div>
+<div class="sx-viz stepper" aria-hidden="true">
+<span class="track"><i></i></span>
+<span class="stp"><i></i><em>Brief</em></span><span class="stp"><i></i><em>Plan</em></span><span class="stp"><i></i><em>Launch</em></span><span class="stp"><i></i><em>Report</em></span>
 </div>
-<div class="float f-ig" data-scene="2" aria-hidden="true">
-<span class="fk">Instagram, U'th Times</span>
-<svg class="fline" viewBox="0 0 200 64" preserveAspectRatio="none"><path class="area" d="M4 58 L196 8 L196 64 L4 64Z"/><path class="ln" d="M4 58 L196 8"/><circle cx="4" cy="58" r="3.5"/><circle class="end" cx="196" cy="8" r="4.5"/></svg>
-<span class="ft"><b>25K to 110K</b> followers in six months</span>
 </div>
-<div class="stage-tabs" role="group" aria-label="Choose an example">
-<button type="button" class="st is-on" data-go="0" aria-pressed="true"><i><i></i></i>Paid ads</button>
-<button type="button" class="st" data-go="1" aria-pressed="false"><i><i></i></i>YouTube</button>
-<button type="button" class="st" data-go="2" aria-pressed="false"><i><i></i></i>Social growth</button>
 </div>
 </div>
 </div>
@@ -384,7 +369,7 @@ def page_index():
 
 # ---------- work ----------
 def page_work():
-    reels = ''.join(f'<div class="rgroup" style="--n:{len(items)}"><h3 class="sub-h">{e(g)} <small>{len(items)}</small></h3><div class="reel-grid">' + ''.join(vtile(v, ti, m) for v, ti, m in items) + '</div></div>' for g, items in REEL_GROUPS)
+    reels = ''.join(f'<div class="rgroup"><h3 class="rg-h">{e(g)} <small>{len(items)}</small></h3><div class="reel-grid">' + ''.join(vtile(v, ti, m) for v, ti, m in items) + '</div></div>' for g, items in REEL_GROUPS)
     films = ''.join(vtile(v, t, m, ratio='r169') for v, t, m in FILMS)
     thumbs = ''.join(itile(f'assets/{f}', t, below=True) for f, t in THUMBS)
     latest = ''.join(f'<a class="yt" href="https://www.youtube.com/watch?v={v}" target="_blank" rel="noopener"><span class="yt-ph"><img src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span class="play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span><span class="yt-t">{e(ti)}</span><span class="yt-l">Watch on YouTube</span></a>' for v, ti in LATEST)
