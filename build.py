@@ -571,9 +571,9 @@ def page_about():
             'Reported results in Excel and SQL and built n8n automations and SOPs for content workflows.']),
         ('Apr 2025 – Sep 2025', 'Part-time, remote', 'Social Media Content Producer', "U'th Times / YTV Network", [
             'Helped grow the channel from 25K to 110K followers in 6 months through content planning, production and editing.']),
-        ('Jun 2025 – Jul 2025', 'Internship, remote', 'Video Editor (Intern)', 'Sort Marketing', [
+        ('Feb 2025 – Mar 2025', 'Internship, remote', 'Video Editor (Intern)', 'Sort Marketing', [
             'Short-form edits, animated GIFs and motion graphics for social media.']),
-        ('Apr 2025 – May 2025', 'Internship, remote', 'Video Editor (Intern)', 'Bloofy', [
+        ('Jan 2025 – Feb 2025', 'Internship, remote', 'Video Editor (Intern)', 'Bloofy', [
             'Short-form edits and motion graphics, with footage selected and cut for pacing and continuity.']),
     ]
     jh = ''.join(f'''<li class="job"><div style="display:flex;gap:14px;align-items:flex-start"><span class="dot" aria-hidden="true"></span><div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:600">{w}</span><span class="muted" style="font-size:14px">{t}</span></div></div>
