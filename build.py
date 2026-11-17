@@ -188,6 +188,17 @@ THUMBS = [
     ('ciaz-flooded-roads.webp', 'Ciaz, one mistake and a huge repair bill'),
     ('bmw-z4-back-for-more-repairs.webp', 'BMW Z4, back for more repairs'),
 ]
+UTH_VIDEOS = [  # U'th Times YouTube videos Praneel worked on
+    ('YAI696Hz72k', 'Back to the 90s: favourite Hindi movies'),
+    ('y7WFdvClz8w', 'Pahalgam attacks: unbiased public reactions'),
+    ('q6yOzMhdrzU', 'Which IPL cricketers do Indian girls like?'),
+]
+
+
+def yt_cards(items):
+    return ''.join(f'<a class="yt" href="https://www.youtube.com/watch?v={v}" target="_blank" rel="noopener"><span class="yt-ph"><img src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span><span class="yt-t">{e(ti)}</span><span class="yt-l">Watch on YouTube</span></a>' for v, ti in items)
+
+
 LATEST = [  # three latest uploads on youtube.com/@Revcoreautos, checked 17 Nov 2026
     ('ge5dUh1kK9M', 'This VW Polo came with a lot of problems: head overhaul, AC repair, water pump and more (Part 1)'),
     ('TGNPYOFgqsw', 'Swift crashed into Thar Roxx: full front damaged'),
@@ -324,7 +335,7 @@ def page_work():
     thumbs = ''.join(itile(f'assets/{f}', t, below=True) for f, t in THUMBS)
     latest = ''.join(f'<a class="yt" href="https://www.youtube.com/watch?v={v}" target="_blank" rel="noopener"><span class="yt-ph"><img src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span><span class="yt-t">{e(ti)}</span><span class="yt-l">Watch on YouTube</span></a>' for v, ti in LATEST)
     sg = ''.join(itile(f'assets/creatives/{f}.webp', t, ratio='r916', below=True) for f, t in SG)
-    counts = {'all': 1 + 4 + len(REELS) + len(FILMS) + len(LATEST) + len(THUMBS) + len(SG), 'performance': 1, 'social': 4,
+    counts = {'all': 1 + 4 + len(UTH_VIDEOS) + len(REELS) + len(FILMS) + len(LATEST) + len(THUMBS) + len(SG), 'performance': 1, 'social': 4 + len(UTH_VIDEOS),
               'video': len(REELS) + len(FILMS) + len(LATEST), 'creative': len(THUMBS) + len(SG)}
     chips = [('all', 'All work'), ('performance', 'Performance marketing'), ('social', 'Social media'), ('video', 'Video'), ('creative', 'Thumbnails & creatives')]
     chiph = ''.join(f'<button class="chip" type="button" data-filter="{k}" aria-pressed="{"true" if k == "all" else "false"}">{t} <small>{counts[k]}</small></button>' for k, t in chips)
@@ -354,6 +365,8 @@ def page_work():
 <span class="go">Read the case study {ARROW}</span></span>
 <span class="cs-art"><img src="assets/uth-times-frame.webp" alt="U'th Times logo"></span>
 </a>
+<h3 class="sub-h">U'th Times videos I worked on</h3>
+<div class="yt-grid">{yt_cards(UTH_VIDEOS)}</div>
 <div class="stat-cards">
 <div class="stat-card sf" data-reveal><span class="sc-k">TAKE1</span><p class="disp sc-h">1M views</p><p>In 3 months, from social video planned, produced and edited for retention.</p></div>
 <div class="stat-card" data-reveal><span class="sc-k">TPH Group, Dubai</span><p class="disp sc-h">Social for a services group</p><p class="soft">Content strategy and publishing that turned workforce, facility and cleaning services into clear posts for homes and businesses.</p><a class="link-strong sc-link" href="https://www.instagram.com/yallamaids/" target="_blank" rel="noopener">See on Instagram {ARROW}</a></div>
@@ -529,6 +542,11 @@ def page_uth():
 <section class="sec" style="padding-bottom:0" aria-labelledby="why"><div class="wrap">
 <div class="sec-head"><h2 id="why" class="disp h2">What made it work</h2></div>
 <div class="principles">{pr}</div>
+</div></section>
+
+<section class="sec" style="padding-bottom:0" aria-labelledby="vids"><div class="wrap">
+<div class="sec-head"><h2 id="vids" class="disp h2">Videos I worked on</h2><p class="muted" style="max-width:440px">A few of the U'th Times videos I helped plan, shoot and edit, from street interviews to nostalgia pieces.</p></div>
+<div class="yt-grid" style="margin-bottom:0">{yt_cards(UTH_VIDEOS)}</div>
 </div></section>
 
 <section class="sec" style="padding-bottom:0" aria-labelledby="see"><div class="wrap">
