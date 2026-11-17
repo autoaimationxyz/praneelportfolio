@@ -476,10 +476,10 @@ tr.total td{font-weight:700;border-bottom:none;background:var(--ink-3)}
 .ring{position:absolute;left:50%;top:50%;border:1px dashed #2f3039;border-radius:50%;translate:-50% -50%;animation:spin 40s linear infinite}
 .ring.r1{width:520px;height:520px}
 .ring.r2{width:380px;height:380px;animation-duration:28s;animation-direction:reverse;border-color:#25262f}
-.ring .dot{position:absolute;width:12px;height:12px;border-radius:50%}
-.d1{top:-6px;left:50%;background:var(--saffron);box-shadow:0 0 18px var(--saffron)}
-.d2{bottom:16%;left:4%;background:var(--lime);width:9px!important;height:9px!important}
-.d3{top:50%;right:-6px;background:#fdd892}
+.ring .dot{position:absolute;width:12px;height:12px;border-radius:50%;translate:-50% -50%}
+.d1{top:0;left:50%;background:var(--saffron);box-shadow:0 0 18px var(--saffron)}
+.d2{top:85.355%;left:14.645%;background:var(--lime);width:10px!important;height:10px!important;box-shadow:0 0 14px rgba(193,223,31,.7)}
+.d3{top:50%;left:100%;background:#fdd892}
 @keyframes spin{to{rotate:360deg}}
 .phone{position:absolute;left:50%;top:50%;width:250px;aspect-ratio:9/19;translate:-50% -50%;border-radius:38px;background:#000;border:8px solid #1c1d26;box-shadow:0 40px 80px rgba(0,0,0,.6),0 0 0 1px #2f3039;overflow:hidden;animation:float 6s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
