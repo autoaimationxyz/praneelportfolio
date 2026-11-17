@@ -333,10 +333,9 @@ def page_index():
 <span class="go">Read the case study {ARROW}</span>
 </a>
 <a href="uth-times.html" class="duo-card red" data-reveal>
-<img class="duo-logo" src="assets/uth-times-frame.webp" alt="" width="720" height="406" loading="lazy">
 <span class="duo-k">Case study, social media</span>
-<span class="disp duo-big">Growing U'th Times on social</span>
-<span class="duo-p">How India's youth media brand grew through steady planning, filming and editing.</span>
+<span class="disp duo-big">Social growth for a youth media brand</span>
+<span class="duo-p">Content planning, filming and editing every week. Steady publishing that more than quadrupled the audience in six months.</span>
 <span class="go">Read the case study {ARROW}</span>
 </a>
 </div>
