@@ -149,35 +149,34 @@ FEATURE = f'''<a href="performance.html" class="feature" data-reveal>
 </a>'''
 
 REEL_GROUPS = [  # (group, [(id, title, meta)])
-    ('Brand promotion', [
+    ('Brand and app ads', [
         ('VAG4z-OmH3o', 'Kapiva Spirulina', 'Brand promotion'),
         ('VAG4z1-SOzk', 'Kapiva Shilajit', 'Brand promotion'),
-        ('VAG4zysH5bw', 'Kapiva Moringa', 'Brand promotion')]),
-    ('Food and hospitality', [
-        ('VAG4zjjMj7Y', 'Bitsy Boxy', 'Food product reel'),
-        ('VAG4ziel6NI', 'Food preparation', 'Food reel'),
-        ('drive-video-6', 'Event atmosphere', 'Hospitality reel')]),
-    ('Creator and celebrity edits', [
+        ('VAG4zysH5bw', 'Kapiva Moringa', 'Brand promotion'),
+        ('VAG4zjjMj7Y', 'Bitsy Boxy', 'Food product ad'),
+        ('VAGmt3QOyyg', 'Seek & Find app promo', 'Mobile game, live-action ad'),
+        ('VAGmt5tVHhA', 'Merge game app ad', 'Mobile game, gameplay promo')]),
+    ('Creator and UGC content', [
         ('VAG4zvDab8s', 'Rapid Fire', 'Celebrity interview edit'),
-        ('VAGmtyAPNbM', '0126 campaign', 'Creator agency, vertical edit')]),
-    ('UGC edits', [
-        ('VAG4zo2XV58', 'NG', 'UGC edit'),
+        ('VAGmtyAPNbM', 'Eyewear styling reel', 'Creator campaign'),
+        ('VAG4zo2XV58', 'Bridal makeup transformation', 'UGC edit, beauty'),
         ('VAG4znXqyQI', 'Media Grow', 'UGC edit'),
         ('VAG4zt3yu4k', 'Aviation', 'UGC edit'),
         ('VAGoEtd8oIY', 'Passionbits', 'UGC edit')]),
-    ('Originals and short-form', [
-        ('VAG4z64Z9wI', 'Save Animals', 'Camera, direction and edit'),
-        ('VAG4z97kjZE', 'Street story', 'Camera, direction and edit'),
-        ('VAG4zwJntWc', 'Original reel', 'Camera, direction and edit'),
-        ('VAG4zywB95Y', 'Mountain trip', 'Camera, direction and edit'),
-        ('VAGmt5tVHhA', 'Cows Go Moo', 'Short-form edit'),
-        ('VAGmt3QOyyg', 'EC', 'Creative edit')]),
+    ('Original skits and stories', [
+        ('VAG4z64Z9wI', 'Save Animals', 'Shot, directed and edited'),
+        ('VAG4z97kjZE', 'Street story', 'Shot, directed and edited'),
+        ('VAG4zwJntWc', 'Gully cricket skit', 'Shot, directed and edited'),
+        ('VAG4zywB95Y', 'Scooter skit', 'Shot, directed and edited')]),
+    ('Food and hospitality', [
+        ('VAG4ziel6NI', 'Food preparation', 'Restaurant reel'),
+        ('drive-video-6', 'Event atmosphere', 'Hospitality reel')]),
 ]
 REELS = [r for _, g in REEL_GROUPS for r in g]
 FILMS = [
     ('VAG4zxmpw38', 'Bageshwar Dham', 'Spiritual and events, video edit'),
-    ('VAGmt40SPCY', '0126 campaign film', 'Creator agency'),
-    ('VAGmt0Tu-ZU', 'Bharat', 'Intro sequence'),
+    ('VAGmt40SPCY', 'Eyewear portrait film', 'Creator campaign'),
+    ('VAGmt0Tu-ZU', "U'th Times channel intro", 'Intro sequence'),
     ('VAGoEnGz3QU', 'Olmec civilisation', 'Long-form YouTube'),
     ('drive-video-1', 'Residential development', 'Property film'),
     ('drive-video-2', 'Shree Nilay walkthrough', 'Property film'),
@@ -194,7 +193,7 @@ LATEST = [  # three latest uploads on youtube.com/@Revcoreautos, checked 17 Nov 
     ('TGNPYOFgqsw', 'Swift crashed into Thar Roxx: full front damaged'),
     ('yCYkZWGk7FE', 'Brand new Thar Roxx hit by Swift: major damage'),
 ]
-SG = [('IMG_8289', 'A location that upgrades how you live'), ('IMG_8299', 'Grand arrival'), ('IMG_8301', 'A balcony away')]
+SG = [('IMG_8289', 'A location that upgrades how you live'), ('IMG_8299', 'Grand arrival'), ('IMG_8301', 'A balcony away'), ('IMG_8290', 'A lagoon-style pool')]
 
 CLIENTS = [
     ('Rapido', 'https://www.instagram.com/rapidoapp/'), ('Lenskart', 'https://www.instagram.com/lenskart/'),
@@ -324,7 +323,7 @@ def page_work():
     films = ''.join(vtile(v, t, m, ratio='r169') for v, t, m in FILMS)
     thumbs = ''.join(itile(f'assets/{f}', t, below=True) for f, t in THUMBS)
     latest = ''.join(f'<a class="yt" href="https://www.youtube.com/watch?v={v}" target="_blank" rel="noopener"><span class="yt-ph"><img src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span><span class="yt-t">{e(ti)}</span><span class="yt-l">Watch on YouTube</span></a>' for v, ti in LATEST)
-    sg = ''.join(itile(f'assets/creatives/{f}.webp', t, 'Signature Global creative', ratio='r916') for f, t in SG)
+    sg = ''.join(itile(f'assets/creatives/{f}.webp', t, ratio='r916', below=True) for f, t in SG)
     counts = {'all': 1 + 4 + len(REELS) + len(FILMS) + len(LATEST) + len(THUMBS) + len(SG), 'performance': 1, 'social': 4,
               'video': len(REELS) + len(FILMS) + len(LATEST), 'creative': len(THUMBS) + len(SG)}
     chips = [('all', 'All work'), ('performance', 'Performance marketing'), ('social', 'Social media'), ('video', 'Video'), ('creative', 'Thumbnails & creatives')]
