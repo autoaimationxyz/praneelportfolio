@@ -159,13 +159,9 @@ REELS = [  # (id, title, meta)
     ('VAG4zt3yu4k', 'Aviation', 'Editing task sample'),
     ('VAGoEtd8oIY', 'Passionbits', 'Submission sample'),
     ('VAG4zjjMj7Y', 'Bitsy Boxy', 'Food, product reel'),
-    ('VAG4zn2Y_c0', 'Orange juice', 'Product edit'),
     ('VAG4ziel6NI', 'Food preparation', 'Food reel'),
     ('drive-video-6', 'Event atmosphere', 'Hospitality reel'),
     ('VAGmt5tVHhA', 'Cows Go Moo', 'Short-form edit'),
-    ('VAGmt87nuC8', 'Riddles', 'Short-form edit'),
-    ('VAGf0N_C7Ts', 'Guide', 'Short-form edit'),
-    ('VAGf0Jqfoa8', 'Reddit stories', 'Short-form edit'),
     ('VAGmt3QOyyg', 'EC', 'Creative edit'),
     ('VAG4z64Z9wI', 'Save Animals', 'Original: camera, direction, edit'),
     ('VAG4z97kjZE', 'Street story', 'Original: camera, direction, edit'),
@@ -175,33 +171,22 @@ REELS = [  # (id, title, meta)
 FILMS = [
     ('VAG4zxmpw38', 'Bageshwar Dham', 'Spiritual and events, video edit'),
     ('VAGmt40SPCY', '0126 campaign film', 'Creator agency'),
-    ('VAG4ztWNe08', 'Campaign teaser', 'Creator agency edit'),
     ('VAGmt0Tu-ZU', 'Bharat', 'Intro sequence'),
     ('VAGoEnGz3QU', 'Olmec civilisation', 'Long-form YouTube'),
-    ('VAGmtwtMgyg', 'Clive, seven-second memory', 'Long-form YouTube'),
     ('drive-video-1', 'Residential development', 'Property film'),
     ('drive-video-2', 'Shree Nilay walkthrough', 'Property film'),
 ]
 THUMBS = [
-    ('revcore-z4.webp', 'BMW Z4, exhaust modification'),
-    ('swift-vs-thar-roxx.webp', 'Swift vs Thar Roxx'),
-    ('ciaz-flooded-roads.webp', 'Ciaz, flooded-road repair bill'),
-    ('bmw-z4-back-for-more-repairs.webp', 'BMW Z4, back for more repairs'),
+    ('revcore-z4.webp', 'BMW Z4, crazy exhaust modification'),
+    ('swift-vs-thar-roxx.webp', 'Swift destroyed by Thar Roxx'),
     ('polo-all-this-work.webp', 'Polo, all this work at this price?'),
-    ('swift-asleep-at-night.webp', 'Swift, asleep at the wheel'),
-    ('fortuner-white-thumbnail-1.webp', 'Fortuner, emergency repair'),
-    ('innova-thumbnail-1.webp', 'Innova, diagnosis story'),
-    ('jeep-ac-thumbnail-1.webp', 'Jeep, summer AC leak'),
-    ('jeep-compass-thumbnail-1.webp', 'Jeep Compass, fuel pump'),
-    ('polo-white-thumbnail-1.webp', 'Polo, accident repair'),
-    ('range-rover-sport-thumbnail-1.webp', 'Range Rover Sport, repair story'),
-    ('superb-thumbnail-1.webp', 'Skoda Superb, suspension'),
-    ('thar-thumbnail-1.webp', 'Thar, mountain-trip damage'),
-    ('vento-final-thumbnail.webp', 'Vento, transformation'),
-    ('wagonr-thumbnail-1.webp', 'WagonR, crash and engine story'),
-    ('honda-amaze-thumbnail-1.webp', 'Honda Amaze, transformation'),
-    ('kia-seltos-thumbnail-1.webp', 'Kia Seltos, water leak'),
-    ('octavia-thumbnail-1.webp', 'Skoda Octavia, repair story'),
+    ('ciaz-flooded-roads.webp', 'Ciaz, one mistake and a huge repair bill'),
+    ('bmw-z4-back-for-more-repairs.webp', 'BMW Z4, back for more repairs'),
+]
+LATEST = [  # three latest uploads on youtube.com/@Revcoreautos, checked 17 Nov 2026
+    ('ge5dUh1kK9M', 'This VW Polo came with a lot of problems: head overhaul, AC repair, water pump and more (Part 1)'),
+    ('TGNPYOFgqsw', 'Swift crashed into Thar Roxx: full front damaged'),
+    ('yCYkZWGk7FE', 'Brand new Thar Roxx hit by Swift: major damage'),
 ]
 SG = [('IMG_8289', 'A location that upgrades how you live'), ('IMG_8299', 'Grand arrival'), ('IMG_8301', 'A balcony away')]
 
@@ -218,30 +203,10 @@ CLIENTS = [
 
 # ---------- index ----------
 def page_index():
-    colA = [('VAG4zvDab8s', 'Rapid Fire, creator edit'), ('VAG4zywB95Y', 'Original reel, camera and edit'),
-            ('VAG4zo2XV58', 'NG, UGC edit'), ('VAGmt5tVHhA', 'Cows Go Moo, short')]
-    colB = [('VAG4z-OmH3o', 'Kapiva Spirulina, brand promo'), ('VAG4zt3yu4k', 'Aviation, editing sample'),
-            ('VAG4z97kjZE', 'Original reel, street story'), ('VAG4zwJntWc', 'Original reel')]
-    colC = [('VAGmtyAPNbM', '0126, vertical campaign edit'), ('VAG4znXqyQI', 'Media Grow, UGC edit'),
-            ('VAGmt3QOyyg', 'EC, creative edit'), ('VAGoEtd8oIY', 'Passionbits, sample')]
-
-    def col(items, cls):
-        tiles = ''.join(vtile(v, t, ratio='r916', cap=True, lazy=False) for v, t in items)
-        dup = ''.join(vtile(v, t, ratio='r916', cap=True) for v, t in items).replace('<button ', '<button tabindex="-1" aria-hidden="true" ')
-        return f'<div class="reel-col {cls}">{tiles}{dup}</div>'
-
-    results = [
-        ('850', '', 'leads in 90 days', 'Meta and Google Ads for a real-estate client at ZycomTech'),
-        ('110', 'K', 'followers, up from 25K', "U'th Times, in six months of content planning, production and editing"),
-        ('1', 'M', 'views in 3 months', 'TAKE1 social video, planned, produced and edited for retention'),
-        ('10', '+', 'client accounts', 'Managed end to end, with repeat work from retained clients'),
-    ]
-    ledger = ''.join(f'<div class="cell"><p class="disp big"><span data-count="{n}" data-suf="{s}">{n}{s}</span></p><p class="what">{w}</p><p class="where">{e(x)}</p></div>' for n, s, w, x in results)
-
     cards = [
-        ('uth-times.html', 'assets/uth-times-frame.webp', "U'th Times logo on red", "U'th Times, social media", '25K to 110K followers in six months', 'The full story of how a youth media brand more than quadrupled its following.'),
-        ('work.html#creative', 'assets/revcore-z4.webp', 'RevCore Autos thumbnail of a BMW Z4 exhaust modification', 'RevCore Autos, YouTube', 'Content for a 54.9K-subscriber channel', 'Videos, short-form edits and 19 click-worthy thumbnails for an automotive workshop.'),
+        ('work.html#creative', 'assets/revcore-z4.webp', 'RevCore Autos thumbnail of a BMW Z4 exhaust modification', 'RevCore Autos, YouTube', 'Content for a 54.9K-subscriber channel', 'Repair-story videos, short-form edits and click-worthy thumbnails for an automotive workshop.'),
         ('work.html#creative', 'assets/creatives/IMG_8289.webp', 'Signature Global creative showing a high-rise at night', 'Signature Global, real estate', 'Property campaign creatives', 'Static campaign creatives for a Gurugram real-estate developer.'),
+        ('work.html#video', 'assets/posters/VAG4z-OmH3o.webp', 'Creator holding a Kapiva Spirulina bottle in the mountains', 'Kapiva, Rapid Fire and more', 'Brand and creator videos', 'Brand promotions, creator and celebrity edits, UGC and original reels.'),
     ]
     cardh = ''.join(
         f'<a href="{h}" class="card" data-reveal><div class="ph"><img src="{i}" alt="{e(a)}" loading="lazy"></div>'
@@ -279,21 +244,51 @@ def page_index():
 <a class="btn btn-solid" href="work.html">See my work</a>
 <a class="btn btn-line" href="performance.html">Read the 850-lead campaign</a>
 </div>
+<p class="trust fade">10+ client accounts, including Rapido, Kapiva, Signature Global and TPH Group.</p>
 </div>
-<div class="reelwall" aria-label="Vertical videos I have produced and edited. Select one to play it.">
-{col(colA, 'up')}{col(colB, 'down')}{col(colC, 'up slow')}
+<div class="showcase" aria-label="Recent results">
+<div class="sc-card sc-main">
+<div class="sc-top"><span>Latest campaign</span><span class="sc-tag">Meta + Google Ads, 90 days</span></div>
+<p class="disp sc-big"><span data-count="850">850</span> <span class="sc-unit">leads</span></p>
+<p class="muted" style="font-size:14px;margin-bottom:18px">For a real-estate client at ZycomTech</p>
+{chart(170, 11)}
+<div class="sc-stats"><div><b>₹1,752</b><span>cost per lead</span></div><div><b>2.32%</b><span>click-through</span></div><div><b>₹11K</b><span>under budget</span></div></div>
+</div>
+<div class="sc-row">
+<a class="sc-card sc-uth" href="uth-times.html">
+<span class="sc-top"><span>U'th Times followers</span></span>
+<span class="sc-mini" aria-hidden="true"><i style="height:23%"></i><i style="height:100%"></i></span>
+<span class="disp sc-mid">25K → 110K</span>
+<span class="sc-sub">in six months</span>
+</a>
+<div class="sc-card sc-take">
+<span class="sc-top"><span>TAKE1</span></span>
+<span class="disp sc-mid">1M views</span>
+<span class="sc-sub">in three months</span>
 </div>
 </div>
-</section>
-
-<section class="ledger" aria-label="Results">
-<div class="wrap">{ledger}</div>
+</div>
+</div>
 </section>
 
 <section class="sec" aria-labelledby="work-title" style="padding-bottom:40px">
 <div class="wrap">
 <div class="sec-head"><h2 id="work-title" class="disp h2">Selected work</h2><a class="link-strong" href="work.html">All work {ARROW}</a></div>
-{FEATURE}
+<div class="duo">
+<a href="performance.html" class="duo-card rust" data-reveal>
+<span class="duo-k">Case study, performance marketing</span>
+<span class="disp duo-big">850 leads in 90 days</span>
+<span class="duo-p">Meta prospecting, Google Search and remarketing for a real-estate developer. Planned with forecasts, tracked every week, delivered ₹11K under budget.</span>
+<span class="go">Read the case study {ARROW}</span>
+</a>
+<a href="uth-times.html" class="duo-card red" data-reveal>
+<img class="duo-logo" src="assets/uth-times-frame.webp" alt="" loading="lazy">
+<span class="duo-k">Case study, social media</span>
+<span class="disp duo-big">25K → 110K followers</span>
+<span class="duo-p">How a youth media brand more than quadrupled its following in six months through planning, filming and editing.</span>
+<span class="go">Read the case study {ARROW}</span>
+</a>
+</div>
 <div class="grid-3">{cardh}</div>
 </div>
 </section>
@@ -326,9 +321,10 @@ def page_work():
     reels = ''.join(vtile(v, t, m) for v, t, m in REELS)
     films = ''.join(vtile(v, t, m, ratio='r169') for v, t, m in FILMS)
     thumbs = ''.join(itile(f'assets/{f}', t, below=True) for f, t in THUMBS)
+    latest = ''.join(f'<a class="yt" href="https://www.youtube.com/watch?v={v}" target="_blank" rel="noopener"><span class="yt-ph"><img src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span><span class="yt-t">{e(ti)}</span><span class="yt-l">Watch on YouTube</span></a>' for v, ti in LATEST)
     sg = ''.join(itile(f'assets/creatives/{f}.webp', t, 'Signature Global creative', ratio='r916') for f, t in SG)
-    counts = {'all': 2 + 3 + len(REELS) + len(FILMS) + len(THUMBS) + len(SG), 'performance': 1, 'social': 4,
-              'video': len(REELS) + len(FILMS), 'creative': len(THUMBS) + len(SG)}
+    counts = {'all': 1 + 4 + len(REELS) + len(FILMS) + len(LATEST) + len(THUMBS) + len(SG), 'performance': 1, 'social': 4,
+              'video': len(REELS) + len(FILMS) + len(LATEST), 'creative': len(THUMBS) + len(SG)}
     chips = [('all', 'All work'), ('performance', 'Performance marketing'), ('social', 'Social media'), ('video', 'Video'), ('creative', 'Thumbnails & creatives')]
     chiph = ''.join(f'<button class="chip" type="button" data-filter="{k}" aria-pressed="{"true" if k == "all" else "false"}">{t} <small>{counts[k]}</small></button>' for k, t in chips)
 
@@ -358,9 +354,9 @@ def page_work():
 <span class="cs-art"><img src="assets/uth-times-frame.webp" alt="U'th Times logo"></span>
 </a>
 <div class="stat-cards">
-<div class="stat-card sf" data-reveal><span class="muted" style="font-size:14px">TAKE1</span><div><p class="disp big">1M views</p><p style="margin-top:8px">in 3 months, from social video planned, produced and edited for retention.</p></div></div>
-<div class="stat-card" data-reveal><span class="muted" style="font-size:14px">TPH Group, Dubai</span><div><p class="disp" style="font-size:30px;line-height:1.1">Social for a services group</p><p class="soft" style="margin-top:10px;font-size:16px">Content strategy and publishing that turned workforce, facility and cleaning services into clear posts for homes and businesses.</p></div><a href="https://www.instagram.com/yallamaids/" target="_blank" rel="noopener">Instagram</a></div>
-<div class="stat-card" data-reveal><span class="muted" style="font-size:14px">Artist pages</span><div><p class="disp" style="font-size:30px;line-height:1.1">Social and digital PR</p><p class="soft" style="margin-top:10px;font-size:16px">Managed social content and digital PR for music artist pages as part of freelance work.</p></div></div>
+<div class="stat-card sf" data-reveal><span class="sc-k">TAKE1</span><p class="disp sc-h">1M views</p><p>In 3 months, from social video planned, produced and edited for retention.</p></div>
+<div class="stat-card" data-reveal><span class="sc-k">TPH Group, Dubai</span><p class="disp sc-h">Social for a services group</p><p class="soft">Content strategy and publishing that turned workforce, facility and cleaning services into clear posts for homes and businesses.</p><a class="link-strong sc-link" href="https://www.instagram.com/yallamaids/" target="_blank" rel="noopener">See on Instagram {ARROW}</a></div>
+<div class="stat-card" data-reveal><span class="sc-k">Artist pages</span><p class="disp sc-h">Social and digital PR</p><p class="soft">Managed social content and digital PR for music artist pages as part of freelance work.</p></div>
 </div>
 </section>
 
@@ -374,9 +370,12 @@ def page_work():
 <div class="wide-grid">{films}</div>
 </section>
 
-<section class="wsec" data-cat="creative" aria-labelledby="w-thumbs">
-<div class="wsec-head"><h2 id="w-thumbs" class="disp">YouTube thumbnails</h2><p>19 thumbnails for RevCore Autos, a 54.9K-subscriber automotive channel. <a href="https://www.youtube.com/@Revcoreautos" target="_blank" rel="noopener">See the channel</a></p></div>
-<div class="thumb-grid">{thumbs}</div>
+<section class="wsec" data-cat="video creative" aria-labelledby="w-yt">
+<div class="wsec-head"><h2 id="w-yt" class="disp">RevCore Autos on YouTube</h2><p>Repair-story videos and thumbnails for a 54.9K-subscriber automotive channel. <a href="https://www.youtube.com/@Revcoreautos" target="_blank" rel="noopener">Visit the channel</a></p></div>
+<h3 class="sub-h">Latest videos</h3>
+<div class="yt-grid">{latest}</div>
+<h3 class="sub-h">Thumbnail picks</h3>
+<div class="bento">{thumbs}</div>
 </section>
 
 <section class="wsec" data-cat="creative" aria-labelledby="w-sg">
@@ -481,11 +480,13 @@ def page_uth():
     pr = ''.join(f'<div class="principle" data-reveal><span class="ic" aria-hidden="true">{icons[i]}</span><div><h3 class="disp">{t}</h3><p>{b}</p></div></div>' for i, t, b in principles)
 
     body = f'''<section class="uth-hero" aria-labelledby="uth-title">
-<div class="wrap">
-<img class="logo" src="assets/uth-times-frame.webp" alt="U'th Times logo">
+<div class="wrap uth-grid">
+<div>
 <nav class="crumb" aria-label="Breadcrumb"><a href="work.html">Work</a> / Social media</nav>
 <h1 id="uth-title" class="disp">25K<br><span class="to">→ 110K</span></h1>
 <p class="sub">Followers in six months for U'th Times, India's youth media brand. Here is how planning, filming and editing every week more than quadrupled its audience.</p>
+</div>
+<img class="logo" src="assets/uth-times-frame.webp" alt="U'th Times logo">
 </div>
 </section>
 
@@ -508,11 +509,10 @@ def page_uth():
 </div>
 <div>
 <div class="gbars" role="img" aria-label="Followers grew from 25,000 in April 2025 to 110,000 in September 2025">
-<div class="gbar"><span class="val">25K</span><div class="fill" style="height:22%;background:#3a3b44"></div></div>
-<span class="gap-tag">+340%</span>
-<div class="gbar"><span class="val accent">110K</span><div class="fill" style="height:96%;background:var(--saffron);transition-delay:.15s"></div></div>
+<div class="gbar"><span class="val">25K</span><div class="fill" style="--h:92px;background:#3a3b44"></div><span class="lab">April 2025</span></div>
+<div class="gap-tag">+340%<small>4.4x the audience</small></div>
+<div class="gbar"><span class="val accent">110K</span><div class="fill" style="--h:400px;background:var(--saffron);transition-delay:.15s"></div><span class="lab">September 2025</span></div>
 </div>
-<div style="display:flex;gap:40px;padding:0 20px"><span class="gbar lab" style="height:auto">April 2025</span><span style="width:90px"></span><span class="gbar lab" style="height:auto">September 2025</span></div>
 </div>
 </div></section>
 
