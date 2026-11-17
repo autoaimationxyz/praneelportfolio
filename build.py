@@ -86,6 +86,9 @@ def foot(next_note=''):
 '''
 
 
+TALL = {'VAG4z1-SOzk', 'VAG4zysH5bw'}  # square videos: tall covers made by mkcards.py
+
+
 def vtile(vid, title, meta='', ratio='r916', cap=False, lazy=True):
     ld = ' loading="lazy"' if lazy else ''
     if cap:
@@ -93,7 +96,7 @@ def vtile(vid, title, meta='', ratio='r916', cap=False, lazy=True):
     else:
         inner = f'{PLAY}<span class="shade"></span><span class="over"><b>{e(title)}</b><span>{e(meta)}</span></span>'
     return (f'<button class="tile {ratio}" type="button" data-video="{vid}" data-title="{e(title)}" aria-label="Play video: {e(title)}">'
-            f'<img src="assets/posters/{vid}.webp" alt=""{DIM[ratio]}{ld}>{inner}</button>')
+            f'<img src="assets/posters/{vid}{"-tall" if vid in TALL and ratio == "r916" else ""}.webp" alt=""{DIM[ratio]}{ld}>{inner}</button>')
 
 
 def itile(src, title, meta='', ratio='r169', below=False):
@@ -247,11 +250,11 @@ def page_index():
 
     cards = [
         ('work.html#creative', 'assets/revcore-z4.webp', 'RevCore Autos thumbnail of a BMW Z4 exhaust modification', 'RevCore Autos, YouTube', 'Content for a 54.9K-subscriber channel', 'Repair-story videos, short-form edits and click-worthy thumbnails for an automotive workshop.'),
-        ('work.html#creative', 'assets/creatives/IMG_8289.webp', 'Signature Global creative showing a high-rise at night', 'Signature Global, real estate', 'Property campaign creatives', 'Static campaign creatives for a Gurugram real-estate developer.'),
-        ('work.html#video', 'assets/posters/VAG4z-OmH3o.webp', 'Creator holding a Kapiva Spirulina bottle in the mountains', 'Kapiva, Rapido and creator edits', 'Brand and creator videos', 'Brand promotions, creator and celebrity edits, UGC and original reels.'),
+        ('work.html#creative', 'assets/card-signature-global.webp', 'Three Signature Global campaign creatives side by side', 'Signature Global, real estate', 'Property campaign creatives', 'Static campaign creatives for a Gurugram real-estate developer.'),
+        ('work.html#video', 'assets/card-creator-edits.webp', 'Three creator and brand video edits, including Kapiva Spirulina', 'Kapiva, Rapido and creator edits', 'Brand and creator videos', 'Brand promotions, creator and celebrity edits, UGC and original reels.'),
     ]
     cardh = ''.join(
-        f'<a href="{h}" class="card" data-reveal><div class="ph"><img src="{i}" alt="{e(a)}" width="800" height="600" loading="lazy"></div>'
+        f'<a href="{h}" class="card" data-reveal><div class="ph"><img src="{i}" alt="{e(a)}" width="1280" height="720" loading="lazy"></div>'
         f'<div style="display:flex;flex-direction:column;gap:var(--s2)"><p class="meta">{e(m)}</p><h3 class="disp">{e(t)}</h3>'
         f'<p class="desc">{e(b)}</p></div></a>' for h, i, a, m, t, b in cards)
 
