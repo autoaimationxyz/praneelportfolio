@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Builds the static pages of Praneel Mohan's portfolio (v4)."""
-import html, os
+import html, os, re
 
 OUT = os.path.dirname(os.path.abspath(__file__))
 e = html.escape
@@ -369,7 +369,14 @@ def page_index():
 
 # ---------- work ----------
 def page_work():
-    reels = ''.join(f'<div class="rgroup"><h3 class="rg-h">{e(g)} <small>{len(items)}</small></h3><div class="reel-grid">' + ''.join(vtile(v, ti, m) for v, ti, m in items) + '</div></div>' for g, items in REEL_GROUPS)
+    def _slug(g): return re.sub(r'[^a-z]+', '-', g.lower()).strip('-')
+    _tabs = [('all', 'All', len(REELS))] + [(_slug(g), g, len(items)) for g, items in REEL_GROUPS]
+    _tabh = ''.join(f'<button type="button" role="tab" class="rx-tab" id="rxt-{k}" aria-selected="{"true" if i == 0 else "false"}" data-k="{k}">{e(lbl)} <small>{n}</small></button>' for i, (k, lbl, n) in enumerate(_tabs))
+    _cards = ''.join(f'<div class="rx-item" data-g="{_slug(g)}">' + vtile(v, ti, m) + '</div>' for g, items in REEL_GROUPS for v, ti, m in items)
+    _arrow = lambda d, lbl: f'<button type="button" class="rx-nav" data-dir="{d}" aria-label="{lbl}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{"M15 6l-6 6 6 6" if d < 0 else "M9 6l6 6-6 6"}"/></svg></button>'
+    reels = (f'<div class="rx" data-rx><div class="rx-bar"><div class="rx-tabs" role="tablist" aria-label="Type of video">{_tabh}</div>'
+             f'<div class="rx-navs">{_arrow(-1, "Previous videos")}{_arrow(1, "Next videos")}</div></div>'
+             f'<div class="rx-track" role="tabpanel" aria-labelledby="rxt-all" tabindex="-1">{_cards}</div></div>')
     films = ''.join(vtile(v, t, m, ratio='r169') for v, t, m in FILMS)
     thumbs = ''.join(itile(f'assets/{f}', t, below=True) for f, t in THUMBS)
     latest = ''.join(f'<a class="yt" href="https://www.youtube.com/watch?v={v}" target="_blank" rel="noopener"><span class="yt-ph"><img src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span class="play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span><span class="yt-t">{e(ti)}</span><span class="yt-l">Watch on YouTube</span></a>' for v, ti in LATEST)
@@ -414,8 +421,8 @@ def page_work():
 </section>
 
 <section class="wsec" data-cat="video" aria-labelledby="w-reels">
-<div class="wsec-head"><h2 id="w-reels" class="disp">Reels and short-form</h2><p>Grouped by type of video. Select one to play.</p></div>
-<div class="reel-groups">{reels}</div>
+<div class="wsec-head"><h2 id="w-reels" class="disp">Reels and short-form</h2><p>Brand ads, creator and UGC edits, original skits and hospitality reels. Select one to play.</p></div>
+{reels}
 </section>
 
 <section class="wsec" data-cat="video" aria-labelledby="w-films">
