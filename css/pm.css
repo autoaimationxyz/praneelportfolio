@@ -88,7 +88,7 @@ h1,h2,h3,p{margin:0}
 
 /* Results ledger */
 .ledger{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.ledger .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.ledger .wrap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
 .ledger .cell{padding:40px 28px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
 .ledger .cell:last-child{border-right:1px solid var(--line)}
 .ledger .big{font-size:clamp(36px,4vw,54px);white-space:nowrap}
@@ -399,7 +399,8 @@ tr.total td{font-weight:700;border-bottom:none;background:var(--ink-3)}
   .ledger .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
   .ledger .cell{border-bottom:1px solid var(--line)}
   .ledger .cell:nth-child(2n){border-right:1px solid var(--line)}
-  .ledger .cell:nth-last-child(-n+2){border-bottom:none}
+  .ledger .cell:last-child{grid-column:1/-1;border-right:1px solid var(--line);border-bottom:none}
+  .ledger .cell:nth-last-child(2),.ledger .cell:nth-last-child(3){border-bottom:1px solid var(--line)}
   .hero-grid,.cta .wrap,.two-col,.growth,.case-pair,.principles,.case-split,.uth-grid,.duo{grid-template-columns:minmax(0,1fr)!important}
   .hero-grid{gap:44px}
   .uth-hero .logo{justify-self:start;max-width:320px}
