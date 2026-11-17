@@ -169,29 +169,29 @@ FEATURE = f'''<a href="performance.html" class="feature" data-reveal>
 <div class="feature-chart">{legend()}{chart(300, 11)}</div>
 </a>'''
 
-REEL_GROUPS = [  # (group, [(id, title, meta)])
-    ('Brand and app ads', [
-        ('VAG4z-OmH3o', 'Kapiva Spirulina', 'Brand promotion'),
-        ('VAG4z1-SOzk', 'Kapiva Shilajit', 'Brand promotion'),
-        ('VAG4zysH5bw', 'Kapiva Moringa', 'Brand promotion'),
-        ('VAG4zjjMj7Y', 'Bitsy Boxy', 'Food product ad'),
-        ('VAGmt3QOyyg', 'Seek & Find app promo', 'Mobile game, live-action ad'),
-        ('VAGmt5tVHhA', 'Merge game app ad', 'Mobile game, gameplay promo')]),
+REEL_GROUPS = [  # (group, [(id, title, meta)]); strongest-looking first in each group
     ('Creator and UGC content', [
-        ('VAG4zvDab8s', 'Rapid Fire', 'Celebrity interview edit'),
         ('VAGmtyAPNbM', 'Eyewear styling reel', 'Creator campaign'),
+        ('VAG4zvDab8s', 'Rapid Fire', 'Celebrity interview edit'),
         ('VAG4zo2XV58', 'Bridal makeup transformation', 'UGC edit, beauty'),
         ('VAG4znXqyQI', 'Media Grow', 'UGC edit'),
         ('VAG4zt3yu4k', 'Aviation', 'UGC edit'),
         ('VAGoEtd8oIY', 'Passionbits', 'UGC edit')]),
+    ('Brand and app ads', [
+        ('VAG4z-OmH3o', 'Kapiva Spirulina', 'Brand promotion'),
+        ('VAG4zysH5bw', 'Kapiva Moringa', 'Brand promotion'),
+        ('VAGmt5tVHhA', 'Merge game app ad', 'Mobile game, gameplay promo'),
+        ('VAGmt3QOyyg', 'Seek & Find app promo', 'Mobile game, live-action ad'),
+        ('VAG4zjjMj7Y', 'Bitsy Boxy', 'Food product ad'),
+        ('VAG4z1-SOzk', 'Kapiva Shilajit', 'Brand promotion')]),
     ('Original skits and stories', [
-        ('VAG4z64Z9wI', 'Save Animals', 'Shot, directed and edited'),
-        ('VAG4z97kjZE', 'Street story', 'Shot, directed and edited'),
         ('VAG4zwJntWc', 'Gully cricket skit', 'Shot, directed and edited'),
-        ('VAG4zywB95Y', 'Scooter skit', 'Shot, directed and edited')]),
+        ('VAG4zywB95Y', 'Scooter skit', 'Shot, directed and edited'),
+        ('VAG4z97kjZE', 'Street story', 'Shot, directed and edited'),
+        ('VAG4z64Z9wI', 'Save Animals', 'Shot, directed and edited')]),
     ('Food and hospitality', [
-        ('VAG4ziel6NI', 'Food preparation', 'Restaurant reel'),
-        ('drive-video-6', 'Event atmosphere', 'Hospitality reel')]),
+        ('drive-video-6', 'Event atmosphere', 'Hospitality reel'),
+        ('VAG4ziel6NI', 'Food preparation', 'Restaurant reel')]),
 ]
 REELS = [r for _, g in REEL_GROUPS for r in g]
 FILMS = [
