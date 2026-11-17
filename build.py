@@ -10,6 +10,8 @@ PLAY = '<span class="play" aria-hidden="true"><svg width="16" height="16" viewBo
 CV = 'assets/Praneel_Mohan_CV.pdf'
 EMAIL = 'praneelmohan1998@gmail.com'
 CUR = ' aria-current="page"'
+DIM = {'r916': ' width="720" height="1280"', 'r169': ' width="1280" height="720"', 'r45': ' width="800" height="1000"', 'r43': ' width="800" height="600"'}
+EXT = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>'
 ACC = ' class="accent"'
 
 
@@ -31,7 +33,9 @@ def head(title, desc, current):
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Geist:wght@300..700&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Geist:wght@400..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Geist:wght@400..700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Geist:wght@400..700&display=swap"></noscript>
 <link rel="stylesheet" href="css/pm.css">
 </head>
 <body>
@@ -42,7 +46,7 @@ def head(title, desc, current):
 <nav class="nav" id="nav" aria-label="Main">{links}</nav>
 <div class="head-right">
 <span class="status"><i aria-hidden="true"></i>Open to new roles</span>
-<a class="btn btn-solid" href="{CV}" download>Download CV</a>
+<a class="btn btn-solid" href="{CV}" download><span class="long">Download&nbsp;</span>CV</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
 </div>
 </div>
@@ -55,11 +59,11 @@ def foot(next_note=''):
     return f'''
 <section id="contact" class="cta" aria-labelledby="cta-title">
 <div class="wrap">
-<div style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:var(--s5)">
 <h2 id="cta-title" class="disp">Let's talk.</h2>
-<p style="font-size:19px;max-width:520px">Open to social media, performance marketing and account management roles. Based in Gurugram, open to remote or hybrid.</p>
+<p style="font-size:var(--fs-lede);max-width:520px">Open to social media, performance marketing and account management roles. Based in Gurugram, open to remote or hybrid.</p>
 </div>
-<div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+<div style="display:flex;flex-direction:column;gap:var(--s4);align-items:flex-start">
 <a class="mail" href="mailto:{EMAIL}">{EMAIL}</a>
 <div class="cta-row">
 <a class="btn btn-dark" href="{CV}" download>Download CV</a>
@@ -89,15 +93,15 @@ def vtile(vid, title, meta='', ratio='r916', cap=False, lazy=True):
     else:
         inner = f'{PLAY}<span class="shade"></span><span class="over"><b>{e(title)}</b><span>{e(meta)}</span></span>'
     return (f'<button class="tile {ratio}" type="button" data-video="{vid}" data-title="{e(title)}" aria-label="Play video: {e(title)}">'
-            f'<img src="assets/posters/{vid}.webp" alt=""{ld}>{inner}</button>')
+            f'<img src="assets/posters/{vid}.webp" alt=""{DIM[ratio]}{ld}>{inner}</button>')
 
 
 def itile(src, title, meta='', ratio='r169', below=False):
     if below:
         return (f'<figure class="thumb"><button class="tile {ratio}" type="button" data-img="{src}" data-title="{e(title)}" aria-label="View larger: {e(title)}">'
-                f'<img src="{src}" alt="{e(title)}" loading="lazy"></button><figcaption>{e(title)}</figcaption></figure>')
+                f'<img src="{src}" alt="{e(title)}"{DIM[ratio]} loading="lazy"></button><figcaption>{e(title)}</figcaption></figure>')
     return (f'<button class="tile {ratio}" type="button" data-img="{src}" data-title="{e(title)}" aria-label="View larger: {e(title)}">'
-            f'<img src="{src}" alt="{e(title)}" loading="lazy"><span class="shade"></span><span class="over"><b>{e(title)}</b><span>{e(meta)}</span></span></button>')
+            f'<img src="{src}" alt="{e(title)}"{DIM[ratio]} loading="lazy"><span class="shade"></span><span class="over"><b>{e(title)}</b><span>{e(meta)}</span></span></button>')
 
 
 # ---------- data ----------
@@ -125,6 +129,20 @@ def chart(height, label_px, axis_full=False):
     return out
 
 
+def fmt(n):
+    return f'{int(n):,}' if n.isdigit() and int(n) >= 1000 else n
+
+
+def weekly_table():
+    head_ = ''.join(f'<th scope="col">W{i+1}</th>' for i in range(13))
+    rows = [('Meta prospecting', META), ('Google Search', SRCH), ('Meta remarketing', RMM), ('Google remarketing', RMG)]
+    body = ''.join(f'<tr><th scope="row">{n}</th>' + ''.join(f'<td>{v}</td>' for v in vals) + f'<td class="hot">{sum(vals)}</td></tr>' for n, vals in rows)
+    tot = [META[i] + SRCH[i] + RMM[i] + RMG[i] for i in range(13)]
+    body += '<tr class="total"><th scope="row">Total</th>' + ''.join(f'<td>{v}</td>' for v in tot) + f'<td class="hot">{sum(tot)}</td></tr>'
+    return (f'<details class="data-table"><summary>Show the weekly numbers by channel</summary><div class="tbl-box"><table><caption class="sr-only">Leads per week by channel</caption>'
+            f'<thead><tr><th scope="col">Channel</th>{head_}<th scope="col">Total</th></tr></thead><tbody>{body}</tbody></table></div></details>')
+
+
 def legend(counts=False):
     c = (' 495', ' 140', ' 88', ' 127') if counts else ('', '', '', '')
     return (f'<div class="legend"><span><i class="c-meta"></i>Meta prospecting{c[0]}</span><span><i class="c-rmm"></i>Meta remarketing{c[1]}</span>'
@@ -133,8 +151,8 @@ def legend(counts=False):
 
 FEATURE = f'''<a href="performance.html" class="feature" data-reveal>
 <div class="feature-copy">
-<div style="display:flex;flex-direction:column;gap:16px">
-<p class="muted" style="font-size:14px">ZycomTech, real-estate client, Meta and Google Ads</p>
+<div style="display:flex;flex-direction:column;gap:var(--s4)">
+<p class="muted" style="font-size:var(--fs-xs)">ZycomTech, real-estate client, Meta and Google Ads</p>
 <h3 class="disp">850 leads in 90 days</h3>
 <p class="soft">A learn, scale and optimise plan across Meta prospecting, Google Search and remarketing on both, with leads tracked by channel every week.</p>
 </div>
@@ -196,7 +214,7 @@ UTH_VIDEOS = [  # U'th Times YouTube videos Praneel worked on
 
 
 def yt_cards(items):
-    return ''.join(f'<a class="yt" href="https://www.youtube.com/watch?v={v}" target="_blank" rel="noopener"><span class="yt-ph"><img src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span><span class="yt-t">{e(ti)}</span><span class="yt-l">Watch on YouTube</span></a>' for v, ti in items)
+    return ''.join(f'<a class="yt" href="https://www.youtube.com/watch?v={v}" target="_blank" rel="noopener"><span class="yt-ph"><img src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span class="play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span><span class="yt-t">{e(ti)}</span><span class="yt-l">Watch on YouTube</span></a>' for v, ti in items)
 
 
 LATEST = [  # three latest uploads on youtube.com/@Revcoreautos, checked 17 Nov 2026
@@ -219,14 +237,13 @@ CLIENTS = [
 
 # ---------- index ----------
 def page_index():
-    results = [
-        ('850', '', 'leads in 90 days', 'Meta and Google Ads for a real-estate client at ZycomTech'),
-        ('110', 'K', 'followers, up from 25K', "U'th Times, in six months of content planning, production and editing"),
-        ('1', 'M', 'views in 3 months', 'TAKE1 social video, planned, produced and edited for retention'),
-        ('10', '+', 'client accounts', 'Managed end to end, with repeat work from retained clients'),
+    proof = [
+        ('110K', 'followers, up from 25K', "U'th Times, in six months of content planning, production and editing"),
+        ('1M', 'views in 3 months', 'TAKE1 social video, planned, produced and edited for retention'),
+        ('10+', 'client accounts', 'Managed end to end, with repeat work from retained clients'),
+        ('4', 'new client deals won', 'Creative-services deals closed through pitches, meetings and follow-ups'),
     ]
-    ledger = ''.join(f'<div class="cell"><p class="disp big"><span data-count="{n}" data-suf="{s}">{n}{s}</span></p><p class="what">{w}</p><p class="where">{e(x)}</p></div>' for n, s, w, x in results)
-    ledger += '<div class="cell"><p class="disp big"><span data-count="4" data-suf="">4</span></p><p class="what">new client deals won</p><p class="where">Creative-services deals closed through pitches, meetings and follow-ups</p></div>'
+    proofh = ''.join(f'<li><b>{n}</b><span class="what">{w}</span><span class="where">{e(x)}</span></li>' for n, w, x in proof)
 
     cards = [
         ('work.html#creative', 'assets/revcore-z4.webp', 'RevCore Autos thumbnail of a BMW Z4 exhaust modification', 'RevCore Autos, YouTube', 'Content for a 54.9K-subscriber channel', 'Repair-story videos, short-form edits and click-worthy thumbnails for an automotive workshop.'),
@@ -234,79 +251,79 @@ def page_index():
         ('work.html#video', 'assets/posters/VAG4z-OmH3o.webp', 'Creator holding a Kapiva Spirulina bottle in the mountains', 'Kapiva, Rapido and creator edits', 'Brand and creator videos', 'Brand promotions, creator and celebrity edits, UGC and original reels.'),
     ]
     cardh = ''.join(
-        f'<a href="{h}" class="card" data-reveal><div class="ph"><img src="{i}" alt="{e(a)}" loading="lazy"></div>'
-        f'<div style="display:flex;flex-direction:column;gap:8px"><p class="muted" style="font-size:14px">{e(m)}</p><h3 class="disp">{e(t)}</h3>'
-        f'<p class="soft" style="font-size:16px">{e(b)}</p></div></a>' for h, i, a, m, t, b in cards)
+        f'<a href="{h}" class="card" data-reveal><div class="ph"><img src="{i}" alt="{e(a)}" width="800" height="600" loading="lazy"></div>'
+        f'<div style="display:flex;flex-direction:column;gap:var(--s2)"><p class="meta">{e(m)}</p><h3 class="disp">{e(t)}</h3>'
+        f'<p class="desc">{e(b)}</p></div></a>' for h, i, a, m, t, b in cards)
 
     services = [
         ('Performance marketing', 'Meta and Google Ads campaigns built to bring in leads, with budgets paced and cost per lead checked every week.', ['Meta Ads Manager', 'Google Search', 'Remarketing', 'Lead generation', 'Weekly reporting']),
         ('Social media management', 'Content strategy, calendars and copy, published on a steady schedule in one consistent brand voice.', ['Content strategy', 'Copywriting', 'Short-form video', 'Digital PR', 'Channel growth']),
         ('Client servicing', "The client's point of contact: briefs, timelines, reviews and follow-ups, with design, web, SEO and video teams kept in step.", ['10+ accounts', 'Briefs and timelines', 'Performance reviews', 'Pitching', 'HubSpot CRM']),
     ]
-    svch = ''.join(f'<div class="svc" data-reveal><h3 class="disp">{t}</h3><p class="soft" style="font-size:16px">{e(b)}</p><ul class="tags">{"".join(f"<li>{e(x)}</li>" for x in tags)}</ul></div>' for t, b, tags in services)
+    svch = ''.join(f'<div class="svc" data-reveal><h3 class="disp">{t}</h3><p>{e(b)}</p><p class="tools">{e(", ".join(tags))}</p></div>' for t, b, tags in services)
 
-    def cl(i, n, u):
-        cls = ' class="hl"' if i % 3 == 0 else ''
+    def brand(n, u):
         if u:
-            return f'<a{cls} href="{u}" target="_blank" rel="noopener">{e(n)}</a>'
-        return f'<a{cls} href="work.html">{e(n)}</a>'
-    one = ''.join(cl(i, n, u) for i, (n, u) in enumerate(CLIENTS))
-    two = one.replace('<a', '<a tabindex="-1" aria-hidden="true"')
+            return f'<li><a href="{u}" target="_blank" rel="noopener">{e(n)}{EXT}<span class="sr-only"> (opens profile)</span></a></li>'
+        return f'<li>{e(n)}</li>'
+    brandh = ''.join(brand(n, u) for n, u in CLIENTS)
 
     jobs = [('Mar 2026 – now', 'Content & YouTube Executive', 'RevCore Autos'),
             ('Jan 2025 – now', 'Freelance & Contract Marketing', '10+ clients incl. Rapido, TAKE1, TPH Group'),
             ('Apr 2025 – Mar 2026', 'Client Servicing & Digital Marketing Executive', 'ZycomTech'),
             ('Apr 2025 – Sep 2025', 'Social Media Content Producer', "U'th Times / YTV Network")]
-    jobh = ''.join(f'<a href="about.html" class="row"><span class="muted" style="font-size:14px">{w}</span><span class="disp">{e(r)}</span><span class="soft">{e(o)}</span><span class="arrow">{ARROW}</span></a>' for w, r, o in jobs)
+    jobh = ''.join(f'<li class="row"><span class="when">{w}</span><span class="role">{e(r)}</span><span class="org">{e(o)}</span></li>' for w, r, o in jobs)
 
     body = f'''<section class="hero" aria-labelledby="hero-title">
 <div class="wrap hero-grid">
 <div class="hero-copy">
-<p class="muted fade" style="font-size:15px">Social media and performance marketing, Gurugram, open to remote or hybrid</p>
-<h1 id="hero-title" class="disp"><span class="line"><span>Social and paid</span></span> <span class="line"><span>media that brings</span></span> <span class="line"><span>in <span class="accent">leads.</span></span></span></h1>
-<p class="lede fade">I run Meta and Google Ads, manage social channels and look after clients end to end. Nearly two years across agency, freelance and in-house roles, for brands in India, the USA and the UAE.</p>
-<div class="cta-row fade">
+<p class="eyebrow enter">Social media and performance marketing, Gurugram, open to remote or hybrid</p>
+<h1 id="hero-title" class="disp enter enter-2">Social and paid media that brings in <span class="accent">leads.</span></h1>
+<p class="lede enter enter-3">I run Meta and Google Ads, manage social channels and look after clients end to end. Nearly two years across agency, freelance and in-house roles, for brands in India, the USA and the UAE.</p>
+<div class="cta-row enter enter-4">
 <a class="btn btn-solid btn-lg" href="work.html">See my work {ARROW}</a>
+<a class="btn btn-line btn-lg" href="{CV}" download>Download CV</a>
 </div>
-<p class="trust fade">10+ client accounts, including Rapido, Kapiva, Signature Global and TPH Group.</p>
+<p class="note enter enter-4">Clients include Rapido, Kapiva, Signature Global and TPH Group.</p>
 </div>
-<div class="hero-art" aria-hidden="true">
-<div class="glow"></div>
-<div class="ring r1"><span class="dot d1"></span><span class="dot d2"></span></div>
-<div class="ring r2"><span class="dot d3"></span></div>
-<div class="phone">
-<video autoplay muted loop playsinline preload="auto" poster="assets/posters/VAG4zvDab8s.webp"><source src="assets/videos/VAG4zvDab8s.mp4" type="video/mp4"></video>
-<div class="ph-bar"><i></i><i></i><i></i></div>
-<div class="ph-side"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3.2 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5c3.5 0 5.5 3.7 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg><b>Like</b></span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><b>Comment</b></span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg><b>Share</b></span></div>
-<div class="hearts"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3.2 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5c3.5 0 5.5 3.7 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg></span><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3.2 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5c3.5 0 5.5 3.7 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg></span><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3.2 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5c3.5 0 5.5 3.7 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg></span><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3.2 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5c3.5 0 5.5 3.7 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg></span><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3.2 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5c3.5 0 5.5 3.7 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg></span></div>
-</div>
-<div class="toast t1"><span class="ti lime"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Lead campaign live</b><small>Meta + Google Ads</small></span></div>
-<div class="toast t2"><span class="ti saf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></span><span><b>+14K followers</b><small>an average month at U'th Times</small></span></div>
-<div class="toast t4"><span class="ti dark"><svg viewBox="0 0 200 64" preserveAspectRatio="none" class="mini-spark"><polyline points="0.0,42.5 16.7,38.4 33.3,30.2 50.0,24.4 66.7,15.6 83.3,11.5 100.0,8.0 116.7,10.9 133.3,13.3 150.0,15.6 166.7,19.7 183.3,23.8 200.0,29.6"/></svg></span><span><b>850 leads</b><small>in 90 days, peak in week 7</small></span></div>
-<div class="toast t3"><span class="ti rust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><span><b>CTR 2.32%</b><small>Meta + Google, 90 days</small></span></div>
-</div>
+<a class="result-card enter enter-3" href="performance.html" aria-label="Case study: 850 leads in 90 days for a real-estate client">
+<span class="rc-k"><span>Latest campaign, ZycomTech</span><span>Meta + Google Ads</span></span>
+<span class="rc-big">850</span><span class="rc-label">leads in 90 days</span>
+<span class="rc-sub">For a real-estate client, reported weekly by channel.</span>
+{chart(190, 11)}
+<span class="rc-stats"><span><b>₹1,752</b><span>cost per lead</span></span><span><b>2.32%</b><span>click-through</span></span><span><b>₹11K</b><span>under budget</span></span></span>
+<span class="rc-go">Read the case study {ARROW}</span>
+</a>
 </div>
 </section>
 
-<section class="ledger" aria-label="Results">
-<div class="wrap">{ledger}</div>
+<section class="proof" aria-label="More results">
+<ul class="wrap">{proofh}</ul>
 </section>
 
-<section class="sec" aria-labelledby="work-title" style="padding-bottom:40px">
+<section class="sec" aria-labelledby="work-title">
 <div class="wrap">
 <div class="sec-head"><h2 id="work-title" class="disp h2">Selected work</h2><a class="link-strong" href="work.html">All work {ARROW}</a></div>
-{FEATURE}
-<a href="uth-times.html" class="case-split" data-reveal>
-<span class="cs-copy"><span style="font-size:15px">U'th Times, case study</span>
-<span style="display:flex;flex-direction:column;gap:16px"><span class="disp big">25K → 110K</span><span style="font-size:19px;max-width:520px">Followers in six months for India's youth media brand, through planning, filming and editing.</span></span>
-<span class="go">Read the case study {ARROW}</span></span>
-<span class="cs-art"><img src="assets/uth-times-frame.webp" alt="U'th Times logo" loading="lazy"></span>
+<div class="duo">
+<a href="performance.html" class="duo-card rust" data-reveal>
+<span class="duo-k">Case study, performance marketing</span>
+<span class="disp duo-big">Lead generation for a real-estate developer</span>
+<span class="duo-p">Meta prospecting, Google Search and remarketing on both. Planned with forecasts, tracked every week, delivered under budget.</span>
+<span class="go">Read the case study {ARROW}</span>
 </a>
+<a href="uth-times.html" class="duo-card red" data-reveal>
+<img class="duo-logo" src="assets/uth-times-frame.webp" alt="" width="720" height="406" loading="lazy">
+<span class="duo-k">Case study, social media</span>
+<span class="disp duo-big">Growing U'th Times on social</span>
+<span class="duo-p">How India's youth media brand grew through steady planning, filming and editing.</span>
+<span class="go">Read the case study {ARROW}</span>
+</a>
+</div>
 <div class="grid-3">{cardh}</div>
 </div>
 </section>
 
-<section class="sec" aria-labelledby="do-title">
+<section class="sec" aria-labelledby="do-title" style="padding-top:0">
 <div class="wrap">
 <div class="sec-head"><h2 id="do-title" class="disp h2">What I do</h2><p class="muted" style="max-width:440px">Three jobs I can own from day one, backed by the video and design skills that keep content moving.</p></div>
 <div class="grid-3">{svch}</div>
@@ -314,15 +331,17 @@ def page_index():
 </div>
 </section>
 
-<section aria-labelledby="clients-title" style="padding:0 0 120px">
-<h2 id="clients-title" class="wrap muted" style="font-size:15px;font-weight:500;margin-bottom:28px">Brands I've worked on, directly or through agencies</h2>
-<div class="marquee-box"><div class="marquee">{one}{two}</div></div>
+<section class="sec" aria-labelledby="clients-title" style="padding-top:0">
+<div class="wrap">
+<div class="sec-head" style="margin-bottom:var(--s5)"><h2 id="clients-title" class="disp h2">Brands I've worked on</h2><p class="muted" style="max-width:440px">Directly or through agencies. Names with an arrow open their public profile.</p></div>
+<ul class="brands">{brandh}</ul>
+</div>
 </section>
 
-<section aria-labelledby="exp-title" style="padding-bottom:120px">
+<section class="sec" aria-labelledby="exp-title" style="padding-top:0">
 <div class="wrap">
-<div class="sec-head" style="margin-bottom:32px"><h2 id="exp-title" class="disp h2">Experience</h2><a class="link-strong" href="about.html">Full experience and skills {ARROW}</a></div>
-<div class="rows">{jobh}</div>
+<div class="sec-head" style="margin-bottom:var(--s5)"><h2 id="exp-title" class="disp h2">Experience</h2><a class="link-strong" href="about.html">Full experience and skills {ARROW}</a></div>
+<ul class="rows">{jobh}</ul>
 </div>
 </section>
 '''
@@ -334,7 +353,7 @@ def page_work():
     reels = ''.join(f'<div class="rgroup" style="--n:{len(items)}"><h3 class="sub-h">{e(g)} <small>{len(items)}</small></h3><div class="reel-grid">' + ''.join(vtile(v, ti, m) for v, ti, m in items) + '</div></div>' for g, items in REEL_GROUPS)
     films = ''.join(vtile(v, t, m, ratio='r169') for v, t, m in FILMS)
     thumbs = ''.join(itile(f'assets/{f}', t, below=True) for f, t in THUMBS)
-    latest = ''.join(f'<a class="yt" href="https://www.youtube.com/watch?v={v}" target="_blank" rel="noopener"><span class="yt-ph"><img src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span><span class="yt-t">{e(ti)}</span><span class="yt-l">Watch on YouTube</span></a>' for v, ti in LATEST)
+    latest = ''.join(f'<a class="yt" href="https://www.youtube.com/watch?v={v}" target="_blank" rel="noopener"><span class="yt-ph"><img src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span class="play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span><span class="yt-t">{e(ti)}</span><span class="yt-l">Watch on YouTube</span></a>' for v, ti in LATEST)
     sg = ''.join(itile(f'assets/creatives/{f}.webp', t, ratio='r916', below=True) for f, t in SG)
     counts = {'all': 1 + 4 + len(UTH_VIDEOS) + len(REELS) + len(FILMS) + len(LATEST) + len(THUMBS) + len(SG), 'performance': 1, 'social': 4 + len(UTH_VIDEOS),
               'video': len(REELS) + len(FILMS) + len(LATEST), 'creative': len(THUMBS) + len(SG)}
@@ -342,8 +361,8 @@ def page_work():
     chiph = ''.join(f'<button class="chip" type="button" data-filter="{k}" aria-pressed="{"true" if k == "all" else "false"}">{t} <small>{counts[k]}</small></button>' for k, t in chips)
 
     body = f'''<section class="page-head">
-<div class="wrap" style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap">
-<div style="display:flex;flex-direction:column;gap:18px;max-width:780px">
+<div class="wrap" style="display:flex;justify-content:space-between;align-items:flex-end;gap:var(--s6);flex-wrap:wrap">
+<div style="display:flex;flex-direction:column;gap:var(--s4);max-width:780px">
 <h1 class="disp">Work</h1>
 <p class="lede">Campaigns, channel growth, brand and creator edits, thumbnails and creatives. Pick the kind of work you are hiring for.</p>
 </div>
@@ -352,7 +371,7 @@ def page_work():
 
 <div class="filters"><div class="wrap" role="group" aria-label="Filter work">{chiph}</div></div>
 
-<div class="wrap" style="padding-bottom:120px">
+<div class="wrap" style="padding-bottom:var(--sec)">
 <section class="wsec" data-cat="performance" aria-labelledby="w-perf">
 <div class="wsec-head"><h2 id="w-perf" class="disp">Performance marketing</h2><p>Paid campaigns, planned with forecasts and reported every week.</p></div>
 {FEATURE}
@@ -361,8 +380,8 @@ def page_work():
 <section class="wsec" data-cat="social" aria-labelledby="w-social">
 <div class="wsec-head"><h2 id="w-social" class="disp">Social media</h2><p>Channel growth, content strategy and publishing for brands and pages.</p></div>
 <a href="uth-times.html" class="case-split" data-reveal>
-<span class="cs-copy"><span style="font-size:15px">U'th Times, case study</span>
-<span style="display:flex;flex-direction:column;gap:16px"><span class="disp big">25K → 110K</span><span style="font-size:19px;max-width:520px">Followers in six months for India's youth media brand, through planning, filming and editing.</span></span>
+<span class="cs-copy"><span style="font-size:var(--fs-sm)">U'th Times, case study</span>
+<span style="display:flex;flex-direction:column;gap:var(--s4)"><span class="disp big">25K → 110K</span><span style="font-size:var(--fs-lede);max-width:520px">Followers in six months for India's youth media brand, through planning, filming and editing.</span></span>
 <span class="go">Read the case study {ARROW}</span></span>
 <span class="cs-art"><img src="assets/uth-times-frame.webp" alt="U'th Times logo"></span>
 </a>
@@ -406,11 +425,11 @@ def page_work():
 def page_perf():
     kpis = [('850', '', '', 'reported leads', True), ('1752', '₹', '', 'blended cost per lead', False), ('2.32', '', '%', 'click-through rate', False),
             ('14.89', '₹', 'L', 'spend of ₹15L budget', False), ('16', '', ' lakh', 'impressions', False), ('37120', '', '', 'clicks', False)]
-    kh = ''.join(f'<div class="k"><b{ACC if hot else ""}><span data-count="{n}" data-pre="{p}" data-suf="{s}">{p}{n}{s}</span></b><span>{l}</span></div>' for n, p, s, l, hot in kpis)
-    phases = [('01', 'weeks 1–2', 'Learning', 'Let the platforms learn, test audiences and set the baseline.', '#6f7d12'),
-              ('02', 'weeks 3–4', 'Ramp-up', 'Shift budget to what converted; lead volume climbs fast.', '#c1df1f'),
-              ('03', 'weeks 5–8', 'Peak', 'Highest volume across every channel, topping out at 89 in week 7.', '#faa613'),
-              ('04', 'weeks 9–13', 'Optimise', 'A steady, efficient run that kept results consistent to the end.', '#fdd892')]
+    kh = ''.join(f'<div class="k"><b{ACC if hot else ""}>{p}{fmt(n)}{s}</b><span>{l}</span></div>' for n, p, s, l, hot in kpis)
+    phases = [('01', 'weeks 1–2', 'Learning', 'Let the platforms learn, test audiences and set the baseline.', 'var(--lime-dk)'),
+              ('02', 'weeks 3–4', 'Ramp-up', 'Shift budget to what converted; lead volume climbs fast.', 'var(--lime)'),
+              ('03', 'weeks 5–8', 'Peak', 'Highest volume across every channel, topping out at 89 in week 7.', 'var(--accent)'),
+              ('04', 'weeks 9–13', 'Optimise', 'A steady, efficient run that kept results consistent to the end.', 'var(--accent-soft)')]
     ph = ''.join(f'<li style="--c:{c}" data-reveal><span class="n">{n}, {w}</span><span class="disp">{t}</span><p>{b}</p></li>' for n, w, t, b, c in phases)
     rows = [('Meta prospecting', '₹7,80,000', '460–530', '495', '₹1,500–1,700', '₹1,576', '1.20%'),
             ('Google Search', '₹3,10,000', '75–110', '88', '₹3,000–4,000', '₹3,523', '6.00%'),
@@ -421,9 +440,9 @@ def page_perf():
 <div class="wrap">
 <nav class="crumb" aria-label="Breadcrumb"><a href="work.html">Work</a> / Performance marketing</nav>
 <div class="hero-grid" style="align-items:end">
-<div style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:var(--s5)">
 <h1 class="disp">850 leads in <span class="accent">90 days.</span></h1>
-<p class="lede" style="font-size:20px">A Meta and Google Ads lead-generation campaign for a real-estate developer, planned with forecast ranges and run on a learn, scale and optimise plan.</p>
+<p class="lede" style="font-size:var(--fs-h3)">A Meta and Google Ads lead-generation campaign for a real-estate developer, planned with forecast ranges and run on a learn, scale and optimise plan.</p>
 </div>
 <dl class="meta-box">
 <div><dt>Client</dt><dd>Real-estate developer, name withheld</dd></div>
@@ -443,19 +462,20 @@ def page_perf():
 </div></section>
 
 <section class="sec" style="padding-bottom:0" aria-labelledby="phases"><div class="wrap">
-<h2 id="phases" class="disp h2" style="margin-bottom:40px">Learn. Ramp up. Peak. Optimise.</h2>
+<h2 id="phases" class="disp h2" style="margin-bottom:var(--s6)">Learn. Ramp up. Peak. Optimise.</h2>
 <ol class="phases">{ph}</ol>
 </div></section>
 
 <section class="sec" style="padding-bottom:0" aria-labelledby="weekly"><div class="wrap">
-<div class="sec-head" style="margin-bottom:32px"><h2 id="weekly" class="disp h2">Leads, week by week</h2>{legend(True)}</div>
+<div class="sec-head" style="margin-bottom:var(--s6)"><h2 id="weekly" class="disp h2">Leads, week by week</h2>{legend(True)}</div>
 <div class="chart-box">{chart(380, 13, True)}</div>
+{weekly_table()}
 <p class="footnote">Reported leads from the campaign report, not confirmed sales. Weekly totals add up to 850.</p>
 </div></section>
 
 <section class="sec" style="padding-bottom:0" aria-labelledby="planned"><div class="wrap">
 <div class="growth" style="grid-template-columns:minmax(0,4fr) minmax(0,8fr);align-items:start">
-<div style="display:flex;flex-direction:column;gap:16px"><h2 id="planned" class="disp h2">Planned it. Then hit it.</h2><p class="soft">Every channel launched with a forecast range. Total leads, cost per lead and CTR all landed inside it, and spend finished ₹11,011 under budget.</p></div>
+<div style="display:flex;flex-direction:column;gap:var(--s4)"><h2 id="planned" class="disp h2">Planned it. Then hit it.</h2><p class="soft">Every channel launched with a forecast range. Total leads, cost per lead and CTR all landed inside it, and spend finished ₹11,011 under budget.</p></div>
 <div class="tbl-box"><table>
 <thead><tr><th scope="col">Channel</th><th scope="col">Spend</th><th scope="col">Est. leads</th><th scope="col">Leads</th><th scope="col">Est. CPL</th><th scope="col">CPL</th><th scope="col">CTR</th></tr></thead>
 <tbody>{rh}<tr class="total"><td>Total</td><td>₹14,88,989</td><td class="muted">700–900</td><td class="hot">850</td><td class="muted">₹1,700–2,200</td><td>₹1,752</td><td>2.32%</td></tr></tbody>
@@ -465,7 +485,7 @@ def page_perf():
 </div></section>
 
 <section class="sec"><div class="wrap">
-<a href="uth-times.html" class="next"><span style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px">Next case study</span><span class="disp">U'th Times: 25K to 110K followers</span></span><svg aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+<a href="uth-times.html" class="next"><span style="display:flex;flex-direction:column;gap:var(--s2)"><span style="font-size:var(--fs-xs)">Next case study</span><span class="disp">U'th Times: 25K to 110K followers</span></span><svg aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 </div></section>
 '''
     return head('850 leads in 90 days | Praneel Mohan', 'Case study: a 90-day Meta and Google Ads campaign for a real-estate client that delivered 850 leads at ₹1,752 cost per lead.', 'performance.html') + body + foot()
@@ -476,7 +496,7 @@ def page_uth():
     kpis = [('25', '', 'K', 'followers at the start', False), ('110', '', 'K', 'followers six months later', True),
             ('4.4', '', 'x', 'growth in the following', False), ('85', '+', 'K', 'new followers', False),
             ('14', '~', 'K', 'added per month, on average', False), ('6', '', '', 'months, part-time', False)]
-    kh = ''.join(f'<div class="k"><b{ACC if hot else ""}><span data-count="{n}" data-pre="{p}" data-suf="{s}">{p}{n}{s}</span></b><span>{l}</span></div>' for n, p, s, l, hot in kpis)
+    kh = ''.join(f'<div class="k"><b{ACC if hot else ""}>{p}{fmt(n)}{s}</b><span>{l}</span></div>' for n, p, s, l, hot in kpis)
     steps = [('Plan the idea', 'Pitch topics that young Indians already talk about, shape each one around a single hook, and slot it into a weekly content calendar.'),
              ('Film it', 'Shoot on location and with real people, capturing extra angles and reactions so the edit has room to move.'),
              ('Cut for retention', 'Open on the strongest moment, keep the pace tight, add captions for silent viewing and finish in the brand look.'),
@@ -517,16 +537,16 @@ def page_uth():
 </div></section>
 
 <section class="sec" style="padding-bottom:0" aria-labelledby="jump"><div class="wrap growth">
-<div style="display:flex;flex-direction:column;gap:20px" data-reveal>
+<div style="display:flex;flex-direction:column;gap:var(--s5)" data-reveal>
 <h2 id="jump" class="disp h2">The jump, at a glance</h2>
 <p class="soft">In April the channel had 25,000 followers. By September it had 110,000. That is 85,000 new people choosing to follow, or roughly 14,000 every month, while I worked on it part-time.</p>
 <p class="soft">The brand already had a large YouTube audience. The opportunity was to bring that energy to short-form social, where a follow has to be earned in seconds.</p>
 </div>
 <div>
 <div class="gbars" role="img" aria-label="Followers grew from 25,000 in April 2025 to 110,000 in September 2025">
-<div class="gbar"><span class="val">25K</span><div class="fill" style="--h:92px;background:#3a3b44"></div><span class="lab">April 2025</span></div>
+<div class="gbar"><span class="val">25K</span><div class="fill" style="--h:92px;background:var(--line-2)"></div><span class="lab">April 2025</span></div>
 <div class="gap-tag">+340%<small>4.4x the audience</small></div>
-<div class="gbar"><span class="val accent">110K</span><div class="fill" style="--h:400px;background:var(--saffron);transition-delay:.15s"></div><span class="lab">September 2025</span></div>
+<div class="gbar"><span class="val accent">110K</span><div class="fill" style="--h:400px;background:var(--accent);transition-delay:.15s"></div><span class="lab">September 2025</span></div>
 </div>
 </div>
 </div></section>
@@ -536,7 +556,7 @@ def page_uth():
 <ol class="steps">{sh}</ol>
 </div></section>
 
-<section class="quote-band" style="margin-top:120px"><div class="wrap">
+<section class="quote-band" style="margin-top:var(--sec)"><div class="wrap">
 <p data-reveal>Every video had one job: make a stranger <span class="accent">stop scrolling</span>, then give them a reason to <span class="accent">follow for the next one.</span></p>
 </div></section>
 
@@ -551,8 +571,8 @@ def page_uth():
 </div></section>
 
 <section class="sec" style="padding-bottom:0" aria-labelledby="see"><div class="wrap">
-<div class="feature" style="grid-template-columns:minmax(0,1fr);background:var(--ink-3)">
-<div class="feature-copy" style="gap:24px">
+<div class="feature" style="grid-template-columns:minmax(0,1fr);background:var(--surface-2)">
+<div class="feature-copy" style="gap:var(--s5)">
 <h2 id="see" class="disp" style="font-size:clamp(30px,3.5vw,44px)">See U'th Times today</h2>
 <p class="soft" style="max-width:640px">The brand keeps growing across platforms, including a YouTube channel with 618K subscribers.</p>
 <div class="links-row">
@@ -565,7 +585,7 @@ def page_uth():
 </div></section>
 
 <section class="sec"><div class="wrap">
-<a href="performance.html" class="next"><span style="display:flex;flex-direction:column;gap:8px"><span style="font-size:14px">Next case study</span><span class="disp">850 leads in 90 days</span></span><svg aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+<a href="performance.html" class="next"><span style="display:flex;flex-direction:column;gap:var(--s2)"><span style="font-size:var(--fs-xs)">Next case study</span><span class="disp">850 leads in 90 days</span></span><svg aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 </div></section>
 '''
     return head("U'th Times: 25K to 110K followers | Praneel Mohan", "Case study: how Praneel Mohan helped U'th Times grow from 25K to 110K followers in six months through content planning, filming and editing.", 'performance.html') + body + foot()
@@ -600,17 +620,17 @@ def page_about():
         ('Jan 2025 – Feb 2025', 'Internship, remote', 'Video Editor (Intern)', 'Bloofy', [
             'Short-form edits and motion graphics, with footage selected and cut for pacing and continuity.']),
     ]
-    jh = ''.join(f'''<li class="job"><div style="display:flex;gap:14px;align-items:flex-start"><span class="dot" aria-hidden="true"></span><div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:600">{w}</span><span class="muted" style="font-size:14px">{t}</span></div></div>
+    jh = ''.join(f'''<li class="job"><div style="display:flex;gap:var(--s3);align-items:flex-start"><span class="dot" aria-hidden="true"></span><div style="display:flex;flex-direction:column;gap:var(--s1)"><span style="font-weight:600">{w}</span><span class="muted" style="font-size:var(--fs-xs)">{t}</span></div></div>
 <div><h3 class="disp">{e(r)}</h3><p class="org">{e(o)}</p><ul>{"".join(f"<li>{e(p)}</li>" for p in pts)}</ul>{CASES.get(o, "")}</div></li>''' for w, t, r, o, pts in jobs)
     skills = [('Paid ads', ['Meta Ads Manager', 'Google Ads, Search and remarketing', 'Lead generation', 'Campaign optimisation', 'Performance reporting']),
               ('Social media', ['Content strategy and planning', 'Copywriting', 'Short-form video', 'Social media management', 'Digital PR']),
               ('Client servicing', ['Account management', 'Onboarding and briefs', 'Reviews and retention', 'Pitching', 'Stakeholder management']),
               ('Data and tools', ['Excel and SQL', 'HubSpot CRM', 'n8n automation', 'Canva', 'Premiere Pro and DaVinci Resolve'])]
     skh = ''.join(f'<div class="skill" data-reveal><h3 class="disp">{t}</h3><ul>{"".join(f"<li>{e(i)}</li>" for i in items)}</ul></div>' for t, items in skills)
-    body = f'''<section class="page-head" style="padding-bottom:96px">
-<div class="wrap hero-grid" style="gap:64px;align-items:end">
+    body = f'''<section class="page-head" style="padding-bottom:var(--sec)">
+<div class="wrap hero-grid" style="gap:var(--s8);align-items:end">
 <h1 class="disp">Engineer by training. <span class="accent">Marketer</span> by trade.</h1>
-<div style="display:flex;flex-direction:column;gap:18px" class="soft">
+<div style="display:flex;flex-direction:column;gap:var(--s4)" class="soft">
 <p>I studied Electrical and Electronics Engineering at MAIT, Delhi, and found my way into marketing with the analytical habits intact.</p>
 <p>For nearly two years I've run Meta and Google Ads, managed social channels and been the person clients call, across agency, freelance and in-house roles. I track numbers in Excel and SQL, keep pipelines in HubSpot and automate the repetitive parts with n8n.</p>
 <p>Video and design are strengths I bring along, not the whole story.</p>
@@ -618,23 +638,23 @@ def page_about():
 </div>
 </section>
 
-<section aria-labelledby="exp" style="padding-bottom:112px"><div class="wrap">
-<div class="sec-head" style="margin-bottom:32px"><h2 id="exp" class="disp h2">Experience</h2><a class="link-strong" href="https://www.linkedin.com/in/praneel-mohan" target="_blank" rel="noopener">LinkedIn profile {ARROW}</a></div>
-<ol style="margin:0;padding:0;list-style:none;border-top:1px solid #23242c">{jh}</ol>
+<section aria-labelledby="exp" style="padding-bottom:var(--sec)"><div class="wrap">
+<div class="sec-head" style="margin-bottom:var(--s6)"><h2 id="exp" class="disp h2">Experience</h2><a class="link-strong" href="https://www.linkedin.com/in/praneel-mohan" target="_blank" rel="noopener">LinkedIn profile {ARROW}</a></div>
+<ol style="margin:0;padding:0;list-style:none;border-top:1px solid var(--line)">{jh}</ol>
 </div></section>
 
-<section aria-labelledby="skills" style="background:var(--ink-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap sec">
-<h2 id="skills" class="disp h2" style="margin-bottom:40px">Skills and tools</h2>
+<section aria-labelledby="skills" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap sec">
+<h2 id="skills" class="disp h2" style="margin-bottom:var(--s6)">Skills and tools</h2>
 <div class="grid-4">{skh}</div>
 </div></section>
 
-<section class="sec"><div class="wrap two-col" style="gap:24px">
-<div style="padding:40px;border-radius:28px;border:1px solid #23242c;display:flex;flex-direction:column;gap:12px">
-<h2 class="muted" style="font-size:15px;font-weight:500;margin:0">Education</h2>
+<section class="sec"><div class="wrap two-col" style="gap:var(--s5)">
+<div style="padding:var(--s6);border-radius:var(--r-lg);border:1px solid var(--line);display:flex;flex-direction:column;gap:var(--s3)">
+<h2 class="muted" style="font-size:var(--fs-sm);font-weight:500;margin:0">Education</h2>
 <p class="disp" style="font-size:28px;line-height:1.15">B.Tech, Electrical and Electronics Engineering</p>
 <p class="soft">Maharaja Agrasen Institute of Technology, Delhi. 2022 to 2026, completed August 2026.</p>
 </div>
-<div style="padding:40px;border-radius:28px;background:var(--saffron);color:var(--ink);display:flex;flex-direction:column;justify-content:space-between;gap:24px">
+<div style="padding:var(--s6);border-radius:var(--r-lg);background:var(--accent);color:var(--bg);display:flex;flex-direction:column;justify-content:space-between;gap:var(--s5)">
 <p class="disp" style="font-size:36px;line-height:1.05">The one-page version.</p>
 <div class="cta-row"><a class="btn btn-dark" href="{CV}" download>Download CV (PDF)</a><a class="btn btn-ghost-dark" href="mailto:{EMAIL}">Email me</a></div>
 </div>

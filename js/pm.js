@@ -11,19 +11,8 @@
   });
 
   // Reveal, chart and count-up when in view
-  function countUp(el) {
-    var end = parseFloat(el.getAttribute('data-count')), dec = (el.getAttribute('data-count').split('.')[1] || '').length;
-    var pre = el.getAttribute('data-pre') || '', suf = el.getAttribute('data-suf') || '';
-    if (reduce) { el.textContent = pre + end.toLocaleString('en-IN', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf; return; }
-    var t0 = null, dur = 1400;
-    function step(t) {
-      if (!t0) t0 = t;
-      var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
-      el.textContent = pre + (end * e).toLocaleString('en-IN', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf;
-      if (p < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
+  // Numbers are rendered final in the markup: no count-up, so nothing shifts while reading.
+  function countUp() {}
   var targets = document.querySelectorAll('[data-reveal], .chart, .gbars, [data-count]');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
