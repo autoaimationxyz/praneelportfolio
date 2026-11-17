@@ -29,6 +29,60 @@
     targets.forEach(function (el) { el.classList.add('in'); if (el.hasAttribute('data-count')) countUp(el); });
   }
 
+  // Hero stage: cycles through three real examples
+  var stage = document.querySelector('[data-stage]');
+  if (stage) {
+    var scenes = stage.querySelectorAll('[data-scene]'), tabs = stage.querySelectorAll('.st'), cur = 0, timer = null, DUR = 5600, loaded = false;
+    function loadRest() {
+      if (loaded) return; loaded = true;
+      stage.querySelectorAll('img[data-src]').forEach(function (im) { im.src = im.getAttribute('data-src'); });
+    }
+    function count(el) {
+      var a = +el.getAttribute('data-from'), b = +el.getAttribute('data-to'), t0 = null;
+      if (reduce) { el.textContent = b + 'K'; return; }
+      el.textContent = a + 'K';
+      function step(t) {
+        if (!t0) t0 = t;
+        var p = Math.min(1, (t - t0) / 1400), v = Math.round(a + (b - a) * (1 - Math.pow(1 - p, 3)));
+        el.textContent = v + 'K';
+        if (p < 1) requestAnimationFrame(step);
+      }
+      setTimeout(function () { requestAnimationFrame(step); }, 350);
+    }
+    function show(n) {
+      cur = n;
+      scenes.forEach(function (el) {
+        var on = +el.getAttribute('data-scene') === n;
+        el.classList.toggle('is-on', false);
+        if (on) { void el.offsetWidth; el.classList.add('is-on'); }
+      });
+      tabs.forEach(function (b, i) {
+        var on = i === n, bar = b.querySelector('i i');
+        b.classList.toggle('is-on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        if (bar) { bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = ''; }
+      });
+      var c = stage.querySelector('.is-on [data-to]');
+      if (c) count(c);
+      if (n > 0) loadRest();
+    }
+    function play() { if (reduce) return; stop(); timer = setInterval(function () { show((cur + 1) % 3); }, DUR); stage.classList.remove('paused'); }
+    function stop() { if (timer) clearInterval(timer); timer = null; }
+    tabs.forEach(function (b) {
+      b.addEventListener('click', function () { show(+b.getAttribute('data-go')); play(); });
+    });
+    stage.addEventListener('mouseenter', function () { stop(); stage.classList.add('paused'); });
+    stage.addEventListener('mouseleave', function () {
+      var bar = stage.querySelector('.st.is-on i i');
+      if (bar) { bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = ''; }
+      play();
+    });
+    document.addEventListener('visibilitychange', function () { document.hidden ? stop() : play(); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { es[0].isIntersecting ? play() : stop(); }).observe(stage);
+    } else play();
+    window.addEventListener('load', function () { setTimeout(loadRest, 1200); });
+  }
+
   // Lightbox for videos and images
   var lb = document.createElement('div');
   lb.className = 'lb';
