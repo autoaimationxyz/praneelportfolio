@@ -1,0 +1,76 @@
+/* Praneel Mohan portfolio layer — sits on top of the original TLC styles */
+.wordmark>span.wordmark-name{line-height:1.05}
+.pm-hero .hero-brandline>span:first-child{font-size:clamp(34px,4.6vw,66px);letter-spacing:-.06em;line-height:.9}
+.pm-hero .hero-brandline small{font-size:12px;font-weight:700;letter-spacing:1px;color:#bfc0ba;border-left:1px solid #ffffff44;padding-left:16px}
+.pm-hero .hero-actions{flex-wrap:wrap;gap:22px}
+.pm-hero-card{display:flex;flex-direction:column;gap:10px;background:#11131c;border:1px solid #ffffff1f;border-radius:8px;padding:clamp(24px,3vw,40px);color:var(--white);transition:transform .25s,border-color .25s}
+.pm-hero-card:hover{transform:translateY(-4px);border-color:var(--orange)}
+.pm-hero-card .eyebrow{color:var(--lime)}
+.pm-hero-card strong{font-size:clamp(90px,12vw,180px);font-weight:900;letter-spacing:-.08em;line-height:.8;color:var(--orange)}
+.pm-hero-card-label{font-size:clamp(20px,2.2vw,30px);font-weight:800;letter-spacing:-.03em}
+.pm-spark{width:100%;height:auto;color:var(--lime);opacity:.9;margin:14px 0 4px}
+.pm-hero-card-meta{font-size:12px;color:#a9aab0;line-height:1.5}
+.pm-hero-card .case-teaser-link{margin-top:8px;font-size:12px;font-weight:700}
+/* Results */
+.pm-results h2,.pm-experience h2,.pm-brands h2,.pm-skills h2{font-size:clamp(38px,4.6vw,68px);margin:28px 0 40px}
+.pm-results-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#d6d7cf;border:1px solid #d6d7cf}
+.pm-stat{background:var(--white);padding:28px 24px 30px;display:flex;flex-direction:column;gap:6px;min-height:210px;transition:background .2s}
+a.pm-stat:hover{background:#fff}
+.pm-stat strong{font-size:clamp(34px,3.6vw,54px);font-weight:900;letter-spacing:-.06em;line-height:1}
+.pm-stat span{font-size:13px;font-weight:700;color:var(--rust);text-transform:uppercase;letter-spacing:.6px}
+.pm-stat p{font-size:13px;color:#5b5d55;margin-top:auto}
+.pm-stat-lead{grid-column:span 2;background:var(--black);color:var(--white)}
+a.pm-stat-lead:hover{background:#11131c}
+.pm-stat-lead strong{color:var(--orange);font-size:clamp(60px,7vw,110px)}
+.pm-stat-lead span{color:var(--lime)}.pm-stat-lead p{color:#bfc0ba}
+.pm-results .source-note{margin-top:18px}
+/* Timeline */
+.pm-experience{background:#efeee8}
+.pm-timeline{list-style:none;margin:0;padding:0;border-top:1px solid #c9cbbf}
+.pm-job{display:grid;grid-template-columns:minmax(150px,.32fr) 1fr;gap:5%;padding:34px 0;border-bottom:1px solid #c9cbbf}
+.pm-job-meta{display:flex;flex-direction:column;gap:6px}
+.pm-date{font-weight:900;font-size:15px;letter-spacing:-.02em}
+.pm-type{font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:#6b6d64;font-weight:700}
+.pm-job h3{font-size:clamp(22px,2.3vw,32px);letter-spacing:-.04em;line-height:1.1}
+.pm-company{font-weight:700;color:var(--rust);margin:6px 0 12px!important}
+.pm-job-body>p{max-width:760px;color:#3d3f38}
+.pm-job ul{margin:12px 0 0;padding-left:18px;max-width:820px}
+.pm-job li{margin:7px 0;font-size:15px;color:#2b2d27}
+.pm-job .text-link{display:inline-block;margin-top:14px;border-color:var(--black)}
+.pm-job-key .pm-date{color:var(--rust)}
+.pm-edu h3{font-size:clamp(18px,1.8vw,24px)}
+/* Mini cases */
+.pm-mini-cases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:34px}
+.pm-mini{border:1px solid #c9cbbf;border-radius:6px;padding:22px;display:flex;flex-direction:column;gap:8px;transition:border-color .2s,transform .2s}
+a.pm-mini:hover{border-color:var(--black);transform:translateY(-3px)}
+.pm-mini h3{font-size:20px;letter-spacing:-.03em;line-height:1.15}
+.pm-mini p{font-size:13px;color:#5b5d55}
+/* Brand wall */
+.pm-brands{background:var(--black);color:var(--white)}
+.pm-brands .eyebrow{color:var(--lime)}
+.pm-brands h2 em{color:var(--orange)}
+.pm-brand-wall{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1px;background:#ffffff22;border:1px solid #ffffff22}
+.pm-brand-wall li{background:var(--black);min-height:110px;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;padding:16px;font-weight:900;font-size:clamp(17px,1.6vw,22px);letter-spacing:-.03em;transition:color .2s,background .2s}
+.pm-brand-wall li:hover{color:var(--black);background:var(--lime)}
+.pm-brand-wall small{font-size:10px;letter-spacing:1px;color:var(--orange)}
+.pm-brands .source-note{color:#9c9da3;margin-top:18px}
+/* Skills */
+.pm-skill-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px}
+.pm-skill{border-top:3px solid var(--black);padding-top:18px}
+.pm-skill h3{font-size:19px;letter-spacing:-.03em;display:flex;gap:10px;align-items:baseline}
+.pm-skill h3 span{font-size:11px;color:var(--rust);letter-spacing:1px}
+.pm-skill ul{list-style:none;padding:0;margin:14px 0 0}
+.pm-skill li{font-size:14px;padding:8px 0;border-bottom:1px solid #dcdcd4}
+/* Contact */
+.contact-list{list-style:none;padding:0;margin:26px 0;display:grid;gap:14px}
+.contact-list li{display:flex;flex-direction:column;gap:3px;font-size:15px}
+.contact-list span{font-size:10px;letter-spacing:1.3px;text-transform:uppercase;font-weight:700;opacity:.65}
+.contact-list a{border-bottom:1px solid currentColor;width:fit-content;display:inline}
+@media(max-width:1100px){.pm-skill-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.pm-mini-cases{grid-template-columns:repeat(2,minmax(0,1fr))}.pm-results-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:800px){.pm-job{grid-template-columns:1fr;gap:12px}.pm-hero .new-hero-grid{grid-template-columns:1fr;gap:40px}}
+@media(max-width:680px){.pm-skill-grid,.pm-mini-cases{grid-template-columns:1fr}.pm-results-grid{grid-template-columns:1fr}.pm-stat-lead{grid-column:auto}.pm-stat{min-height:0}.pm-brand-wall{grid-template-columns:repeat(2,minmax(0,1fr))}.pm-brand-wall li{min-height:84px;font-size:16px}}
+@media(prefers-reduced-motion:reduce){.pm-hero-card,.pm-mini{transition:none}.pm-hero-card:hover,a.pm-mini:hover{transform:none}}
+.header nav a:not(.nav-cta){color:var(--white)}.header nav a:not(.nav-cta):hover{color:var(--orange)}
+.home-sectors .home-section-heading h2{font-size:clamp(38px,4.6vw,68px)!important;line-height:.98}
+.pm-brand-wall{grid-template-columns:repeat(7,minmax(0,1fr))}
+@media(max-width:1100px){.pm-brand-wall{grid-template-columns:repeat(2,minmax(0,1fr))}}

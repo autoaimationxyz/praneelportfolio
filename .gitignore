@@ -1,0 +1,23 @@
+# ── Personal media stays OFF GitHub ─────────────────────────────
+# Every image, video, logo, cover and the CV live only on your computer
+# (and on the host you deploy to). Only code is committed.
+assets/*
+!assets/favicon.svg
+!assets/weekly-leads.svg
+
+# Any stray media anywhere else
+*.mp4
+*.mov
+*.webm
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.gif
+*.pdf
+
+# Old TLC agency pages kept for reference only
+_archive-tlc/
+
+# OS junk
+.DS_Store
