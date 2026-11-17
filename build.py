@@ -234,7 +234,7 @@ CLIENTS = [
     ("U'th Times", 'https://www.instagram.com/uthtimes01/'), ('TAKE1', None),
     ('ZycomTech', 'https://www.linkedin.com/company/zycomtech/'), ('Bageshwar Dham', 'https://www.instagram.com/iambageshwardhamsarkar/'),
     ('Sort Marketing', 'https://www.instagram.com/sortmarketing/'), ('Bloofy', 'https://www.instagram.com/bloofy.co/'),
-    ('ReachHub', None), ('Zeyar', None), ('Paridhi', None),
+    ('ReachHub', None), ('Zeyar', None),
 ]
 
 
