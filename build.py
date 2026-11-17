@@ -242,8 +242,8 @@ def page_index():
     two = one.replace('<a', '<a tabindex="-1" aria-hidden="true"')
 
     jobs = [('Mar 2026 – now', 'Content & YouTube Executive', 'RevCore Autos'),
-            ('Apr 2025 – Mar 2026', 'Client Servicing & Digital Marketing Executive', 'ZycomTech'),
             ('Jan 2025 – now', 'Freelance & Contract Marketing', '10+ clients incl. Rapido, TAKE1, TPH Group'),
+            ('Apr 2025 – Mar 2026', 'Client Servicing & Digital Marketing Executive', 'ZycomTech'),
             ('Apr 2025 – Sep 2025', 'Social Media Content Producer', "U'th Times / YTV Network")]
     jobh = ''.join(f'<a href="about.html" class="row"><span class="muted" style="font-size:14px">{w}</span><span class="disp">{e(r)}</span><span class="soft">{e(o)}</span><span class="arrow">{ARROW}</span></a>' for w, r, o in jobs)
 
@@ -560,17 +560,17 @@ def page_about():
         ('Mar 2026 – present', 'Full-time, Gurugram', 'Content & YouTube Executive', 'RevCore Autos', [
             'Plan and deliver content for an automotive YouTube channel of about 54.9K subscribers and its workshop: videos, short-form edits and thumbnails.',
             'Track video performance and recommend improvements to engagement and retention.']),
-        ('Apr 2025 – Mar 2026', 'Full-time, Delhi, hybrid', 'Client Servicing & Digital Marketing Executive', 'ZycomTech', [
-            'Client point of contact at an award-winning 360° digital marketing agency with 30+ active clients, for India and USA accounts in real estate, FMCG, insurance and media.',
-            'Ran a 90-day Meta and Google Ads lead-generation campaign for a real-estate client that delivered 850 leads.',
-            'Tracked leads weekly by channel in Excel and presented performance reviews and recommendations to clients.',
-            'Scoped briefs and timelines and coordinated design, web, SEO, social and video teams to deliver on time.']),
         ('Jan 2025 – present', 'Freelance and contract', 'Freelance & Contract Marketing', '10+ clients', [
             'Managed 10+ accounts end to end across education, fashion, automotive and marketing, winning repeat work.',
             'Closed 4 creative-services deals through pitches and follow-ups, with the pipeline in HubSpot CRM.',
             'Produced video campaigns for Rapido, brand and creator videos for Kapiva, and property campaign creatives for Signature Global; managed social content and digital PR for artist pages.',
             'Contributed to 1M views in 3 months for TAKE1 and ran content and social execution for TPH Group (UAE).',
             'Reported results in Excel and SQL and built n8n automations and SOPs for content workflows.']),
+        ('Apr 2025 – Mar 2026', 'Full-time, Delhi, hybrid', 'Client Servicing & Digital Marketing Executive', 'ZycomTech', [
+            'Client point of contact at an award-winning 360° digital marketing agency with 30+ active clients, for India and USA accounts in real estate, FMCG, insurance and media.',
+            'Ran a 90-day Meta and Google Ads lead-generation campaign for a real-estate client that delivered 850 leads.',
+            'Tracked leads weekly by channel in Excel and presented performance reviews and recommendations to clients.',
+            'Scoped briefs and timelines and coordinated design, web, SEO, social and video teams to deliver on time.']),
         ('Apr 2025 – Sep 2025', 'Part-time, remote', 'Social Media Content Producer', "U'th Times / YTV Network", [
             'Helped grow the channel from 25K to 110K followers in 6 months, about 14K new followers a month, through content planning, production and editing.',
             'Pitched topics around what young Indians were talking about and planned them into a weekly content calendar.',
