@@ -62,7 +62,7 @@ h1,h2,h3,p{margin:0}
 .hero-grid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:56px;align-items:center}
 .hero-copy{display:flex;flex-direction:column;gap:30px}
 .hero h1{font-size:clamp(40px,4.6vw,68px);line-height:.98}
-.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
 .hero h1 .line span{display:inline-block;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
 .hero h1 .line:nth-child(2) span{animation-delay:.08s}
 .hero h1 .line:nth-child(3) span{animation-delay:.16s}
@@ -352,6 +352,7 @@ tr.total td{font-weight:700;border-bottom:none;background:var(--ink-3)}
 @media (max-width:600px){
   .head-right .btn{display:none}
   .reel-grid,.thumb-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .reelwall .tile .cap{display:none}
   .kpis .wrap,.ledger .wrap{grid-template-columns:minmax(0,1fr)}
   .phases,.steps,.grid-4,.creative-grid{grid-template-columns:minmax(0,1fr)}
   .meta-box{grid-template-columns:minmax(0,1fr)}
