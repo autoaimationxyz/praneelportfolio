@@ -243,16 +243,34 @@ def page_index():
     jobh = ''.join(f'<a href="about.html" class="row"><span class="muted" style="font-size:14px">{w}</span><span class="disp">{e(r)}</span><span class="soft">{e(o)}</span><span class="arrow">{ARROW}</span></a>' for w, r, o in jobs)
 
     body = f'''<section class="hero" aria-labelledby="hero-title">
-<div class="wrap">
-<div class="hero-copy hero-full">
+<div class="wrap hero-grid">
+<div class="hero-copy">
 <p class="muted fade" style="font-size:15px">Social media and performance marketing, Gurugram or remote</p>
-<h1 id="hero-title" class="disp"><span class="line"><span>Social and paid media</span></span> <span class="line"><span>that brings in <span class="accent">leads.</span></span></span></h1>
+<h1 id="hero-title" class="disp"><span class="line"><span>Social and paid</span></span> <span class="line"><span>media that brings</span></span> <span class="line"><span>in <span class="accent">leads.</span></span></span></h1>
 <p class="lede fade">I run Meta and Google Ads, manage social channels and look after clients end to end. Nearly two years across agency, freelance and in-house roles, for brands in India, the USA and the UAE.</p>
 <div class="cta-row fade">
-<a class="btn btn-solid" href="work.html">See my work</a>
-<a class="btn btn-line" href="performance.html">Read the 850-lead campaign</a>
+<a class="btn btn-solid btn-lg" href="work.html">See my work {ARROW}</a>
 </div>
 <p class="trust fade">10+ client accounts, including Rapido, Kapiva, Signature Global and TPH Group.</p>
+</div>
+<div class="hero-art" aria-hidden="true">
+<div class="glow"></div>
+<div class="ring r1"><span class="dot d1"></span><span class="dot d2"></span></div>
+<div class="ring r2"><span class="dot d3"></span></div>
+<div class="phone">
+<video autoplay muted loop playsinline preload="auto" poster="assets/posters/VAG4zvDab8s.webp"><source src="assets/videos/VAG4zvDab8s.mp4" type="video/mp4"></video>
+<div class="ph-bar"><i></i><i></i><i></i></div>
+<div class="ph-side"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3.2 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5c3.5 0 5.5 3.7 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg><b>12.4K</b></span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><b>318</b></span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg><b>Share</b></span></div>
+<div class="hearts"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3.2 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5c3.5 0 5.5 3.7 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg></span><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3.2 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5c3.5 0 5.5 3.7 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg></span><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3.2 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5c3.5 0 5.5 3.7 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg></span><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3.2 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5c3.5 0 5.5 3.7 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg></span><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3.2 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5c3.5 0 5.5 3.7 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg></span></div>
+</div>
+<div class="toast t1"><span class="ti lime"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>New lead</b><small>Meta Ads, just now</small></span></div>
+<div class="toast t2"><span class="ti saf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></span><span><b>+14K followers</b><small>an average month at U'th Times</small></span></div>
+<div class="spark">
+<span class="sp-k">Leads per week</span>
+<svg viewBox="0 0 200 64" preserveAspectRatio="none"><polyline points="0.0,42.5 16.7,38.4 33.3,30.2 50.0,24.4 66.7,15.6 83.3,11.5 100.0,8.0 116.7,10.9 133.3,13.3 150.0,15.6 166.7,19.7 183.3,23.8 200.0,29.6"/></svg>
+<span class="sp-v"><b>850</b> in 90 days</span>
+</div>
+<div class="toast t3"><span class="ti rust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><span><b>CTR 2.32%</b><small>Meta + Google, 90 days</small></span></div>
 </div>
 </div>
 </section>
