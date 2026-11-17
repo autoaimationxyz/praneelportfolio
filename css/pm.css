@@ -509,10 +509,20 @@ tr.total td{font-weight:700;border-bottom:none;background:var(--ink-3)}
 .ti.lime{background:var(--lime);color:var(--ink)}
 .ti.saf{background:var(--saffron);color:var(--ink)}
 .ti.rust{background:var(--rust);color:var(--smoke)}
-.t1{top:9%;left:0;animation:toast 9s ease-in-out infinite}
-.t2{top:44%;right:0;animation:toast 9s 3s ease-in-out infinite}
-.t3{bottom:8%;left:6%;animation:toast 9s 6s ease-in-out infinite}
-@keyframes toast{0%{opacity:0;transform:translateY(14px) scale(.96)}6%,34%{opacity:1;transform:none}40%,100%{opacity:.0;transform:translateY(-8px) scale(.98)}}
+.t1{top:9%;left:0;animation:toast 12s ease-in-out infinite}
+.t2{top:40%;right:0;animation:toast 12s 3s ease-in-out infinite}
+.t3{bottom:9%;left:2%;animation:toast 12s 6s ease-in-out infinite}
+.t4{bottom:22%;right:4%;animation:toast 12s 9s ease-in-out infinite}
+.ti.dark{background:var(--saffron);color:var(--ink);padding:7px}
+.mini-spark{width:22px!important;height:18px!important;overflow:visible}
+.mini-spark polyline{fill:none;stroke:currentColor;stroke-width:14;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;stroke-width:2.4}
+.reel-groups{display:flex;flex-wrap:wrap;column-gap:14px;row-gap:36px}
+.rgroup{flex:0 0 calc(var(--n) * (100% - 70px) / 6 + (var(--n) - 1) * 14px);min-width:0}
+.rgroup .reel-grid{grid-template-columns:repeat(var(--n),minmax(0,1fr))}
+@media (max-width:960px){.rgroup{flex-basis:100%}.rgroup .reel-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:600px){.rgroup .reel-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.sub-h small{font-size:12px;color:var(--mute);font-weight:500;margin-left:6px}
+@keyframes toast{0%{opacity:0;transform:translateY(14px) scale(.96)}5%,30%{opacity:1;transform:none}35%,100%{opacity:0;transform:translateY(-8px) scale(.98)}}
 .spark{position:absolute;bottom:14%;right:2%;width:210px;padding:14px 16px;border-radius:18px;background:var(--saffron);color:var(--ink);box-shadow:0 20px 40px rgba(0,0,0,.45);z-index:1;display:flex;flex-direction:column;gap:6px;animation:float 7s 1s ease-in-out infinite}
 .spark .sp-k{font-size:12px;font-weight:600;color:#4a3205}
 .spark svg{width:100%;height:56px;overflow:visible}
@@ -536,7 +546,6 @@ tr.total td{font-weight:700;border-bottom:none;background:var(--ink-3)}
   .toast b{font-size:13px}.toast small{font-size:11px}
   .ti{width:30px;height:30px}
   .t3{display:none}
-  .spark{width:160px;padding:10px 12px;bottom:6%}
-  .spark svg{height:40px}
+  .t4{bottom:10%;right:0}
 }
 @media (prefers-reduced-motion:reduce){.toast{opacity:1}.spark polyline{stroke-dashoffset:0}}

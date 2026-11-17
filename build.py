@@ -148,26 +148,32 @@ FEATURE = f'''<a href="performance.html" class="feature" data-reveal>
 <div class="feature-chart">{legend()}{chart(300, 11)}</div>
 </a>'''
 
-REELS = [  # (id, title, meta)
-    ('VAG4zvDab8s', 'Rapid Fire', 'Creator and celebrity edit'),
-    ('VAGmtyAPNbM', '0126 campaign', 'Creator agency, vertical edit'),
-    ('VAG4z-OmH3o', 'Kapiva Spirulina', 'Brand promotion'),
-    ('VAG4z1-SOzk', 'Kapiva Shilajit', 'Brand promotion'),
-    ('VAG4zysH5bw', 'Kapiva Moringa', 'Brand promotion'),
-    ('VAG4zo2XV58', 'NG', 'UGC edit'),
-    ('VAG4znXqyQI', 'Media Grow', 'UGC edit'),
-    ('VAG4zt3yu4k', 'Aviation', 'Editing task sample'),
-    ('VAGoEtd8oIY', 'Passionbits', 'Submission sample'),
-    ('VAG4zjjMj7Y', 'Bitsy Boxy', 'Food, product reel'),
-    ('VAG4ziel6NI', 'Food preparation', 'Food reel'),
-    ('drive-video-6', 'Event atmosphere', 'Hospitality reel'),
-    ('VAGmt5tVHhA', 'Cows Go Moo', 'Short-form edit'),
-    ('VAGmt3QOyyg', 'EC', 'Creative edit'),
-    ('VAG4z64Z9wI', 'Save Animals', 'Original: camera, direction, edit'),
-    ('VAG4z97kjZE', 'Street story', 'Original: camera, direction, edit'),
-    ('VAG4zwJntWc', 'Original reel', 'Camera, direction, edit'),
-    ('VAG4zywB95Y', 'Mountain trip', 'Camera, direction, edit'),
+REEL_GROUPS = [  # (group, [(id, title, meta)])
+    ('Brand promotion', [
+        ('VAG4z-OmH3o', 'Kapiva Spirulina', 'Brand promotion'),
+        ('VAG4z1-SOzk', 'Kapiva Shilajit', 'Brand promotion'),
+        ('VAG4zysH5bw', 'Kapiva Moringa', 'Brand promotion')]),
+    ('Food and hospitality', [
+        ('VAG4zjjMj7Y', 'Bitsy Boxy', 'Food product reel'),
+        ('VAG4ziel6NI', 'Food preparation', 'Food reel'),
+        ('drive-video-6', 'Event atmosphere', 'Hospitality reel')]),
+    ('Creator and celebrity edits', [
+        ('VAG4zvDab8s', 'Rapid Fire', 'Celebrity interview edit'),
+        ('VAGmtyAPNbM', '0126 campaign', 'Creator agency, vertical edit')]),
+    ('UGC edits', [
+        ('VAG4zo2XV58', 'NG', 'UGC edit'),
+        ('VAG4znXqyQI', 'Media Grow', 'UGC edit'),
+        ('VAG4zt3yu4k', 'Aviation', 'UGC edit'),
+        ('VAGoEtd8oIY', 'Passionbits', 'UGC edit')]),
+    ('Originals and short-form', [
+        ('VAG4z64Z9wI', 'Save Animals', 'Camera, direction and edit'),
+        ('VAG4z97kjZE', 'Street story', 'Camera, direction and edit'),
+        ('VAG4zwJntWc', 'Original reel', 'Camera, direction and edit'),
+        ('VAG4zywB95Y', 'Mountain trip', 'Camera, direction and edit'),
+        ('VAGmt5tVHhA', 'Cows Go Moo', 'Short-form edit'),
+        ('VAGmt3QOyyg', 'EC', 'Creative edit')]),
 ]
+REELS = [r for _, g in REEL_GROUPS for r in g]
 FILMS = [
     ('VAG4zxmpw38', 'Bageshwar Dham', 'Spiritual and events, video edit'),
     ('VAGmt40SPCY', '0126 campaign film', 'Creator agency'),
@@ -265,11 +271,7 @@ def page_index():
 </div>
 <div class="toast t1"><span class="ti lime"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>New lead</b><small>Meta Ads, just now</small></span></div>
 <div class="toast t2"><span class="ti saf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></span><span><b>+14K followers</b><small>an average month at U'th Times</small></span></div>
-<div class="spark">
-<span class="sp-k">Leads per week</span>
-<svg viewBox="0 0 200 64" preserveAspectRatio="none"><polyline points="0.0,42.5 16.7,38.4 33.3,30.2 50.0,24.4 66.7,15.6 83.3,11.5 100.0,8.0 116.7,10.9 133.3,13.3 150.0,15.6 166.7,19.7 183.3,23.8 200.0,29.6"/></svg>
-<span class="sp-v"><b>850</b> in 90 days</span>
-</div>
+<div class="toast t4"><span class="ti dark"><svg viewBox="0 0 200 64" preserveAspectRatio="none" class="mini-spark"><polyline points="0.0,42.5 16.7,38.4 33.3,30.2 50.0,24.4 66.7,15.6 83.3,11.5 100.0,8.0 116.7,10.9 133.3,13.3 150.0,15.6 166.7,19.7 183.3,23.8 200.0,29.6"/></svg></span><span><b>850 leads</b><small>in 90 days, peak in week 7</small></span></div>
 <div class="toast t3"><span class="ti rust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><span><b>CTR 2.32%</b><small>Meta + Google, 90 days</small></span></div>
 </div>
 </div>
@@ -318,7 +320,7 @@ def page_index():
 
 # ---------- work ----------
 def page_work():
-    reels = ''.join(vtile(v, t, m) for v, t, m in REELS)
+    reels = ''.join(f'<div class="rgroup" style="--n:{len(items)}"><h3 class="sub-h">{e(g)} <small>{len(items)}</small></h3><div class="reel-grid">' + ''.join(vtile(v, ti, m) for v, ti, m in items) + '</div></div>' for g, items in REEL_GROUPS)
     films = ''.join(vtile(v, t, m, ratio='r169') for v, t, m in FILMS)
     thumbs = ''.join(itile(f'assets/{f}', t, below=True) for f, t in THUMBS)
     latest = ''.join(f'<a class="yt" href="https://www.youtube.com/watch?v={v}" target="_blank" rel="noopener"><span class="yt-ph"><img src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span><span class="yt-t">{e(ti)}</span><span class="yt-l">Watch on YouTube</span></a>' for v, ti in LATEST)
@@ -361,8 +363,8 @@ def page_work():
 </section>
 
 <section class="wsec" data-cat="video" aria-labelledby="w-reels">
-<div class="wsec-head"><h2 id="w-reels" class="disp">Reels and short-form</h2><p>Brand promotion, creator and celebrity edits, UGC and originals. Select one to play.</p></div>
-<div class="reel-grid">{reels}</div>
+<div class="wsec-head"><h2 id="w-reels" class="disp">Reels and short-form</h2><p>Grouped by type of video. Select one to play.</p></div>
+<div class="reel-groups">{reels}</div>
 </section>
 
 <section class="wsec" data-cat="video" aria-labelledby="w-films">
