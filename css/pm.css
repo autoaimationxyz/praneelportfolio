@@ -215,7 +215,7 @@ a:hover{color:var(--accent)}
 .duo-big{font-size:clamp(26px,2.6vw,36px);line-height:1.05;margin-top:auto;max-width:18ch}
 .duo-p{font-size:var(--fs-sm);max-width:46ch;opacity:.92}
 .duo-card .go{display:inline-flex;align-items:center;gap:var(--s2);font-weight:600;font-size:var(--fs-sm);margin-top:var(--s2)}
-.duo-logo{position:absolute;top:var(--s6);right:var(--s6);width:min(36%,180px);border-radius:var(--r-sm)}
+.duo-logo{width:132px;border-radius:var(--r-sm);order:-1}
 
 /* Services */
 .svc{border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s6);display:flex;flex-direction:column;gap:var(--s3);background:var(--surface)}
@@ -475,7 +475,6 @@ tr.total td{font-weight:700;border-bottom:none;background:var(--surface-2)}
   .chart-axis.full{gap:2px;font-size:10px}
   .kpis .k{padding:var(--s5) var(--s4)}
   .kpis .k b{font-size:clamp(22px,6.4vw,32px)}
-  .duo-logo{position:static;width:120px;order:-1}
   .bento{grid-template-columns:minmax(0,1fr)}
   .bento .thumb:first-child{grid-column:auto;grid-row:auto}
   .bento .thumb:first-child .tile{aspect-ratio:16/9}
