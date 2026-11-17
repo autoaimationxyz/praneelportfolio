@@ -203,6 +203,14 @@ CLIENTS = [
 
 # ---------- index ----------
 def page_index():
+    results = [
+        ('850', '', 'leads in 90 days', 'Meta and Google Ads for a real-estate client at ZycomTech'),
+        ('110', 'K', 'followers, up from 25K', "U'th Times, in six months of content planning, production and editing"),
+        ('1', 'M', 'views in 3 months', 'TAKE1 social video, planned, produced and edited for retention'),
+        ('10', '+', 'client accounts', 'Managed end to end, with repeat work from retained clients'),
+    ]
+    ledger = ''.join(f'<div class="cell"><p class="disp big"><span data-count="{n}" data-suf="{s}">{n}{s}</span></p><p class="what">{w}</p><p class="where">{e(x)}</p></div>' for n, s, w, x in results)
+
     cards = [
         ('work.html#creative', 'assets/revcore-z4.webp', 'RevCore Autos thumbnail of a BMW Z4 exhaust modification', 'RevCore Autos, YouTube', 'Content for a 54.9K-subscriber channel', 'Repair-story videos, short-form edits and click-worthy thumbnails for an automotive workshop.'),
         ('work.html#creative', 'assets/creatives/IMG_8289.webp', 'Signature Global creative showing a high-rise at night', 'Signature Global, real estate', 'Property campaign creatives', 'Static campaign creatives for a Gurugram real-estate developer.'),
@@ -235,10 +243,10 @@ def page_index():
     jobh = ''.join(f'<a href="about.html" class="row"><span class="muted" style="font-size:14px">{w}</span><span class="disp">{e(r)}</span><span class="soft">{e(o)}</span><span class="arrow">{ARROW}</span></a>' for w, r, o in jobs)
 
     body = f'''<section class="hero" aria-labelledby="hero-title">
-<div class="wrap hero-grid">
-<div class="hero-copy">
+<div class="wrap">
+<div class="hero-copy hero-full">
 <p class="muted fade" style="font-size:15px">Social media and performance marketing, Gurugram or remote</p>
-<h1 id="hero-title" class="disp"><span class="line"><span>Social and paid</span></span><span class="line"><span>media that brings</span></span><span class="line"><span>in <span class="accent">leads.</span></span></span></h1>
+<h1 id="hero-title" class="disp"><span class="line"><span>Social and paid media</span></span> <span class="line"><span>that brings in <span class="accent">leads.</span></span></span></h1>
 <p class="lede fade">I run Meta and Google Ads, manage social channels and look after clients end to end. Nearly two years across agency, freelance and in-house roles, for brands in India, the USA and the UAE.</p>
 <div class="cta-row fade">
 <a class="btn btn-solid" href="work.html">See my work</a>
@@ -246,48 +254,23 @@ def page_index():
 </div>
 <p class="trust fade">10+ client accounts, including Rapido, Kapiva, Signature Global and TPH Group.</p>
 </div>
-<div class="showcase" aria-label="Recent results">
-<div class="sc-card sc-main">
-<div class="sc-top"><span>Latest campaign</span><span class="sc-tag">Meta + Google Ads, 90 days</span></div>
-<p class="disp sc-big"><span data-count="850">850</span> <span class="sc-unit">leads</span></p>
-<p class="muted" style="font-size:14px;margin-bottom:18px">For a real-estate client at ZycomTech</p>
-{chart(170, 11)}
-<div class="sc-stats"><div><b>₹1,752</b><span>cost per lead</span></div><div><b>2.32%</b><span>click-through</span></div><div><b>₹11K</b><span>under budget</span></div></div>
 </div>
-<div class="sc-row">
-<a class="sc-card sc-uth" href="uth-times.html">
-<span class="sc-top"><span>U'th Times</span></span>
-<span class="sc-mini" aria-hidden="true"><i style="height:23%"></i><i style="height:100%"></i></span>
-<span class="disp sc-mid">110K</span>
-<span class="sc-sub">followers, up from 25K in six months</span>
-</a>
-<div class="sc-card sc-take">
-<span class="sc-top"><span>TAKE1</span></span>
-<span class="disp sc-mid">1M</span>
-<span class="sc-sub">views in three months</span>
-</div>
-</div>
-</div>
+</section>
+
+<section class="ledger" aria-label="Results">
+<div class="wrap">{ledger}</div>
 </section>
 
 <section class="sec" aria-labelledby="work-title" style="padding-bottom:40px">
 <div class="wrap">
 <div class="sec-head"><h2 id="work-title" class="disp h2">Selected work</h2><a class="link-strong" href="work.html">All work {ARROW}</a></div>
-<div class="duo">
-<a href="performance.html" class="duo-card rust" data-reveal>
-<span class="duo-k">Case study, performance marketing</span>
-<span class="disp duo-big">850 leads in 90 days</span>
-<span class="duo-p">Meta prospecting, Google Search and remarketing for a real-estate developer. Planned with forecasts, tracked every week, delivered ₹11K under budget.</span>
-<span class="go">Read the case study {ARROW}</span>
+{FEATURE}
+<a href="uth-times.html" class="case-split" data-reveal>
+<span class="cs-copy"><span style="font-size:15px">U'th Times, case study</span>
+<span style="display:flex;flex-direction:column;gap:16px"><span class="disp big">25K → 110K</span><span style="font-size:19px;max-width:520px">Followers in six months for India's youth media brand, through planning, filming and editing.</span></span>
+<span class="go">Read the case study {ARROW}</span></span>
+<span class="cs-art"><img src="assets/uth-times-frame.webp" alt="U'th Times logo" loading="lazy"></span>
 </a>
-<a href="uth-times.html" class="duo-card red" data-reveal>
-<img class="duo-logo" src="assets/uth-times-frame.webp" alt="" loading="lazy">
-<span class="duo-k">Case study, social media</span>
-<span class="disp duo-big">25K → 110K followers</span>
-<span class="duo-p">How a youth media brand more than quadrupled its following in six months through planning, filming and editing.</span>
-<span class="go">Read the case study {ARROW}</span>
-</a>
-</div>
 <div class="grid-3">{cardh}</div>
 </div>
 </section>
