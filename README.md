@@ -43,13 +43,11 @@ Re-deploy the same way whenever you change something. Code changes also go to Gi
 
 ## Pages
 
-- `index.html`: the whole story on one page: hero with a reel player, results, what I do, case studies, a work strip, experience, toolkit, about and contact.
-- `work.html`: every piece of work (videos, designs, thumbnails) with category filters and a viewer.
-- `case-850-leads.html`, `case-uth-times.html`, `case-take1.html`, `case-revcore-autos.html`: case studies.
-- `_redirects`: sends old page addresses from version 1 to the new pages (Netlify reads this automatically).
+- `index.html`: hero, What I do (six services), milestones, work experience, work samples, case studies, clients (with Instagram links), skills, about.
+- `performance.html`: FB & Google Ad campaign (90 days): weekly bifurcation of leads by channel, estimated vs actual.
+- `case-studies.html`: project stories.
+- `work.html`, `sector-*.html`: work by sector; collection pages (`revcore-autos.html`, `signature-global.html`, `creator-agencies.html`, `kapiva.html`, …).
+- `revcore-autos.html`: 19 YouTube thumbnails with links to the videos.
+- `contact.html`: contact details and a message form that opens your email app.
 
-## Adding new work
-
-Every piece lives in `js/data.js`. Add one entry per piece with `id`, `type` (`video`, `design` or `thumb`), `cat`
-(`ads`, `realestate`, `automotive`, `thumbnails`, `brands`, `creators`, `stories`, `jewellery`), `title`, `role`,
-`src`, `poster`, `w` and `h`. Put the media file in `assets/` (it stays off GitHub).
+Work data lives in `portfolio.js` (videos), `creatives.js` (designs) and `content.js` (thumbnails). Media files stay in `assets/` and never go to GitHub.
