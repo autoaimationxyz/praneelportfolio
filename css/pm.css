@@ -349,6 +349,7 @@ tr.total td{font-weight:700;border-bottom:none;background:var(--ink-3)}
 .job:hover .dot{background:var(--saffron);border-color:var(--saffron)}
 .job h3{font-size:28px;line-height:1.15}
 .job .org{color:var(--saffron);font-weight:600;margin-top:4px}
+.job-link{margin-top:16px;color:var(--saffron)}
 .job ul{margin:14px 0 0;padding-left:20px;color:var(--soft);display:flex;flex-direction:column;gap:8px}
 .skill{padding:28px;border-radius:22px;background:var(--ink-3);display:flex;flex-direction:column;gap:16px}
 .skill h3{font-size:22px}

@@ -555,6 +555,8 @@ def page_uth():
 
 # ---------- about ----------
 def page_about():
+    CASES = {"U'th Times / YTV Network": f'<a class="link-strong job-link" href="uth-times.html">Read the U\'th Times case study {ARROW}</a>',
+             'ZycomTech': f'<a class="link-strong job-link" href="performance.html">Read the 850-lead case study {ARROW}</a>'}
     jobs = [
         ('Mar 2026 – present', 'Full-time, Gurugram', 'Content & YouTube Executive', 'RevCore Autos', [
             'Plan and deliver content for an automotive YouTube channel of about 54.9K subscribers and its workshop: videos, short-form edits and thumbnails.',
@@ -570,14 +572,17 @@ def page_about():
             'Produced video campaigns for Rapido, contributed to 1M views in 3 months for TAKE1, and ran content and social for TPH Group in Dubai.',
             'Reported results in Excel and SQL and built n8n automations and SOPs for content workflows.']),
         ('Apr 2025 – Sep 2025', 'Part-time, remote', 'Social Media Content Producer', "U'th Times / YTV Network", [
-            'Helped grow the channel from 25K to 110K followers in 6 months through content planning, production and editing.']),
+            'Helped grow the channel from 25K to 110K followers in 6 months, about 14K new followers a month, through content planning, production and editing.',
+            'Pitched topics around what young Indians were talking about and planned them into a weekly content calendar.',
+            'Filmed on location and with real people, then edited for retention: strong opening hooks, tight pacing and captions for silent viewing.',
+            "Kept every piece in the brand's voice, published on a steady schedule, and used what performed to shape the next round of ideas."]),
         ('Feb 2025 – Mar 2025', 'Internship, remote', 'Video Editor (Intern)', 'Sort Marketing', [
             'Short-form edits, animated GIFs and motion graphics for social media.']),
         ('Jan 2025 – Feb 2025', 'Internship, remote', 'Video Editor (Intern)', 'Bloofy', [
             'Short-form edits and motion graphics, with footage selected and cut for pacing and continuity.']),
     ]
     jh = ''.join(f'''<li class="job"><div style="display:flex;gap:14px;align-items:flex-start"><span class="dot" aria-hidden="true"></span><div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:600">{w}</span><span class="muted" style="font-size:14px">{t}</span></div></div>
-<div><h3 class="disp">{e(r)}</h3><p class="org">{e(o)}</p><ul>{"".join(f"<li>{e(p)}</li>" for p in pts)}</ul></div></li>''' for w, t, r, o, pts in jobs)
+<div><h3 class="disp">{e(r)}</h3><p class="org">{e(o)}</p><ul>{"".join(f"<li>{e(p)}</li>" for p in pts)}</ul>{CASES.get(o, "")}</div></li>''' for w, t, r, o, pts in jobs)
     skills = [('Paid ads', ['Meta Ads Manager', 'Google Ads, Search and remarketing', 'Lead generation', 'Campaign optimisation', 'Performance reporting']),
               ('Social media', ['Content strategy and planning', 'Copywriting', 'Short-form video', 'Social media management', 'Digital PR']),
               ('Client servicing', ['Account management', 'Onboarding and briefs', 'Reviews and retention', 'Pitching', 'Stakeholder management']),
