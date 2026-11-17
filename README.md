@@ -24,7 +24,6 @@ Open http://127.0.0.1:8080/
 | `assets/posters/`, `assets/covers/` | Video posters and cover cards |
 | `assets/creatives/` | Signature Global / Zeyar creatives |
 | `assets/*.webp` | RevCore Autos thumbnails |
-| `assets/sector-art/` | Section illustrations |
 | `assets/logos/` | Brand logos |
 | `assets/Praneel_Mohan_CV.pdf` | CV download (add this file) |
 
@@ -44,12 +43,13 @@ Re-deploy the same way whenever you change something. Code changes also go to Gi
 
 ## Pages
 
-- `index.html` — hero, results, full experience timeline, case studies, brands, creative work, skills, about
-- `performance.html` — 90-day Meta & Google Ads campaign (850 leads), week-by-week and by channel
-- `case-studies.html` — 10 project stories
-- `work.html`, `sector-*.html` — creative work by sector
-- collection pages (`signature-global.html`, `revcore-autos.html`, `kapiva.html`, `zeyar.html`, …)
-- `contact.html` — email / phone / WhatsApp / LinkedIn, form opens your email app (nothing is stored)
+- `index.html`: the whole story on one page: hero with a reel player, results, what I do, case studies, a work strip, experience, toolkit, about and contact.
+- `work.html`: every piece of work (videos, designs, thumbnails) with category filters and a viewer.
+- `case-850-leads.html`, `case-uth-times.html`, `case-take1.html`, `case-revcore-autos.html`: case studies.
+- `_redirects`: sends old page addresses from version 1 to the new pages (Netlify reads this automatically).
 
-Built from the unused TLC — The Last Call venture site; the agency-only planner and services
-pages are in `_archive-tlc/` (local only).
+## Adding new work
+
+Every piece lives in `js/data.js`. Add one entry per piece with `id`, `type` (`video`, `design` or `thumb`), `cat`
+(`ads`, `realestate`, `automotive`, `thumbnails`, `brands`, `creators`, `stories`, `jewellery`), `title`, `role`,
+`src`, `poster`, `w` and `h`. Put the media file in `assets/` (it stays off GitHub).
