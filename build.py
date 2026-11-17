@@ -57,7 +57,7 @@ def foot(next_note=''):
 <div class="wrap">
 <div style="display:flex;flex-direction:column;gap:24px">
 <h2 id="cta-title" class="disp">Let's talk.</h2>
-<p style="font-size:19px;max-width:520px">Open to social media, performance marketing and account management roles in Delhi NCR, remote or hybrid.</p>
+<p style="font-size:19px;max-width:520px">Open to social media, performance marketing and account management roles. Based in Gurugram, open to remote or hybrid.</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
 <a class="mail" href="mailto:{EMAIL}">{EMAIL}</a>
@@ -72,7 +72,7 @@ def foot(next_note=''):
 </main>
 <footer class="site-foot">
 <div class="wrap">
-<span>© <span id="year">2026</span> Praneel Mohan, Gurugram, India</span>
+<span>© <span id="year">2026</span> Praneel Mohan, Gurugram, open to remote or hybrid</span>
 <span>Figures are reported campaign and channel results.</span>
 </div>
 </footer>
@@ -231,7 +231,7 @@ def page_index():
     cards = [
         ('work.html#creative', 'assets/revcore-z4.webp', 'RevCore Autos thumbnail of a BMW Z4 exhaust modification', 'RevCore Autos, YouTube', 'Content for a 54.9K-subscriber channel', 'Repair-story videos, short-form edits and click-worthy thumbnails for an automotive workshop.'),
         ('work.html#creative', 'assets/creatives/IMG_8289.webp', 'Signature Global creative showing a high-rise at night', 'Signature Global, real estate', 'Property campaign creatives', 'Static campaign creatives for a Gurugram real-estate developer.'),
-        ('work.html#video', 'assets/posters/VAG4z-OmH3o.webp', 'Creator holding a Kapiva Spirulina bottle in the mountains', 'Kapiva, Rapid Fire and more', 'Brand and creator videos', 'Brand promotions, creator and celebrity edits, UGC and original reels.'),
+        ('work.html#video', 'assets/posters/VAG4z-OmH3o.webp', 'Creator holding a Kapiva Spirulina bottle in the mountains', 'Kapiva, Rapido and creator edits', 'Brand and creator videos', 'Brand promotions, creator and celebrity edits, UGC and original reels.'),
     ]
     cardh = ''.join(
         f'<a href="{h}" class="card" data-reveal><div class="ph"><img src="{i}" alt="{e(a)}" loading="lazy"></div>'
@@ -262,7 +262,7 @@ def page_index():
     body = f'''<section class="hero" aria-labelledby="hero-title">
 <div class="wrap hero-grid">
 <div class="hero-copy">
-<p class="muted fade" style="font-size:15px">Social media and performance marketing, Gurugram or remote</p>
+<p class="muted fade" style="font-size:15px">Social media and performance marketing, Gurugram, open to remote or hybrid</p>
 <h1 id="hero-title" class="disp"><span class="line"><span>Social and paid</span></span> <span class="line"><span>media that brings</span></span> <span class="line"><span>in <span class="accent">leads.</span></span></span></h1>
 <p class="lede fade">I run Meta and Google Ads, manage social channels and look after clients end to end. Nearly two years across agency, freelance and in-house roles, for brands in India, the USA and the UAE.</p>
 <div class="cta-row fade">
@@ -277,10 +277,10 @@ def page_index():
 <div class="phone">
 <video autoplay muted loop playsinline preload="auto" poster="assets/posters/VAG4zvDab8s.webp"><source src="assets/videos/VAG4zvDab8s.mp4" type="video/mp4"></video>
 <div class="ph-bar"><i></i><i></i><i></i></div>
-<div class="ph-side"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3.2 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5c3.5 0 5.5 3.7 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg><b>12.4K</b></span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><b>318</b></span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg><b>Share</b></span></div>
+<div class="ph-side"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3.2 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5c3.5 0 5.5 3.7 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg><b>Like</b></span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><b>Comment</b></span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg><b>Share</b></span></div>
 <div class="hearts"><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3.2 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5c3.5 0 5.5 3.7 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg></span><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3.2 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5c3.5 0 5.5 3.7 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg></span><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3.2 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5c3.5 0 5.5 3.7 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg></span><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3.2 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5c3.5 0 5.5 3.7 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg></span><span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.7 3.2 5 6.7 5c2 0 3.4 1.1 4.3 2.4h2C13.9 6.1 15.3 5 17.3 5c3.5 0 5.5 3.7 4.2 6.8C19.5 16.4 12 21 12 21z"/></svg></span></div>
 </div>
-<div class="toast t1"><span class="ti lime"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>New lead</b><small>Meta Ads, just now</small></span></div>
+<div class="toast t1"><span class="ti lime"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Lead campaign live</b><small>Meta + Google Ads</small></span></div>
 <div class="toast t2"><span class="ti saf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></span><span><b>+14K followers</b><small>an average month at U'th Times</small></span></div>
 <div class="toast t4"><span class="ti dark"><svg viewBox="0 0 200 64" preserveAspectRatio="none" class="mini-spark"><polyline points="0.0,42.5 16.7,38.4 33.3,30.2 50.0,24.4 66.7,15.6 83.3,11.5 100.0,8.0 116.7,10.9 133.3,13.3 150.0,15.6 166.7,19.7 183.3,23.8 200.0,29.6"/></svg></span><span><b>850 leads</b><small>in 90 days, peak in week 7</small></span></div>
 <div class="toast t3"><span class="ti rust"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><span><b>CTR 2.32%</b><small>Meta + Google, 90 days</small></span></div>
