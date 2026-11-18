@@ -16,7 +16,7 @@ ACC = ' class="accent"'
 
 
 def head(title, desc, current):
-    nav = [('index.html', 'Home'), ('work.html', 'Work'), ('performance.html', 'Case studies'), ('about.html', 'About'), ('#contact', 'Contact')]
+    nav = [('index.html', 'Home'), ('index.html#services', 'Services'), ('work.html', 'Work'), ('performance.html', 'Case studies'), ('about.html', 'About'), ('#contact', 'Contact')]
     links = ''.join(
         f'<a href="{h}"{CUR if h == current else ""}>{t}</a>' for h, t in nav if t != 'Home')
     return f'''<!doctype html>
@@ -45,7 +45,7 @@ def head(title, desc, current):
 <a class="brand" href="index.html">PRANEEL MOHAN</a>
 <nav class="nav" id="nav" aria-label="Main">{links}</nav>
 <div class="head-right">
-<span class="status"><i aria-hidden="true"></i>Open to new roles</span>
+<span class="status"><i aria-hidden="true"></i>Available for new work</span>
 <a class="btn btn-solid" href="{CV}" download><span class="long">Download&nbsp;</span>CV</a>
 <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
 </div>
@@ -61,7 +61,7 @@ def foot(next_note=''):
 <div class="wrap">
 <div style="display:flex;flex-direction:column;gap:var(--s5)">
 <h2 id="cta-title" class="disp">Let's talk.</h2>
-<p style="font-size:var(--fs-lede);max-width:520px">Open to social media, performance marketing and account management roles. Based in Gurugram, open to remote or hybrid.</p>
+<p style="font-size:var(--fs-lede);max-width:560px">Need a campaign run, a channel managed or an event covered? Hire me for a project, or talk to me about a full-time role. Based in Gurugram, working remotely or on site.</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:var(--s4);align-items:flex-start">
 <a class="mail" href="mailto:{EMAIL}">{EMAIL}</a>
@@ -76,7 +76,7 @@ def foot(next_note=''):
 </main>
 <footer class="site-foot">
 <div class="wrap">
-<span>© <span id="year">2026</span> Praneel Mohan, Gurugram, open to remote or hybrid</span>
+<span>© <span id="year">2026</span> Praneel Mohan, Gurugram, India</span>
 <span>Figures are reported campaign and channel results.</span>
 </div>
 </footer>
@@ -259,11 +259,20 @@ def page_index():
         f'<p class="desc">{e(b)}</p></div></a>' for h, i, a, m, t, b in cards)
 
     services = [
-        ('Performance marketing', 'Meta and Google Ads campaigns built to bring in leads, with budgets paced and cost per lead checked every week.', ['Meta Ads Manager', 'Google Search', 'Remarketing', 'Lead generation', 'Weekly reporting']),
-        ('Social media management', 'Content strategy, calendars and copy, published on a steady schedule in one consistent brand voice.', ['Content strategy', 'Copywriting', 'Short-form video', 'Digital PR', 'Channel growth']),
-        ('Client servicing', "The client's point of contact: briefs, timelines, reviews and follow-ups, with design, web, SEO and video teams kept in step.", ['10+ accounts', 'Briefs and timelines', 'Performance reviews', 'Pitching', 'HubSpot CRM']),
+        ('Performance marketing', 'Meta and Google Ads campaigns built to bring in leads, with budgets paced and cost per lead checked every week.', ['Meta Ads Manager', 'Google Search', 'Remarketing', 'Lead generation', 'Weekly reporting'], 'performance.html', 'See the 850-lead case study'),
+        ('Social media management', 'Content strategy, calendars and copy, published on a steady schedule in one consistent brand voice.', ['Content strategy', 'Copywriting', 'Short-form video', 'Digital PR', 'Channel growth'], 'uth-times.html', 'See the U\'th Times case study'),
+        ('Client servicing', "Your point of contact from brief to report: timelines, reviews and follow-ups, with design, web, SEO and video teams kept in step.", ['10+ accounts', 'Briefs and timelines', 'Performance reviews', 'Pitching', 'HubSpot CRM'], 'about.html', 'See my experience'),
     ]
-    svch = ''.join(f'<div class="svc" data-reveal><h3 class="disp">{t}</h3><p>{e(b)}</p><p class="tools">{e(", ".join(tags))}</p></div>' for t, b, tags in services)
+    svch = ''.join(f'<div class="svc" data-reveal><h3 class="disp">{t}</h3><p>{e(b)}</p><p class="tools">{e(", ".join(tags))}</p><a class="svc-go" href="{h}">{e(g)} {ARROW}</a></div>' for t, b, tags, h, g in services)
+    production = [
+        ('Video editing', 'Reels, brand and app ads, creator and UGC edits, and long-form YouTube.', 'work.html#video'),
+        ('Shoots and original content', 'Skits and short stories, planned, shot, directed and edited.', 'work.html#video'),
+        ('Event coverage', 'Event and hospitality videos, from large gatherings to hospitality nights.', 'work.html#video'),
+        ('Property films', 'Walkthroughs and development films for real-estate projects.', 'work.html#video'),
+        ('YouTube thumbnails', 'Click-worthy thumbnails and channel content for RevCore Autos.', 'work.html#creative'),
+        ('Static creatives and ad design', 'Campaign creatives and social posts, like the Signature Global set.', 'work.html#creative'),
+    ]
+    prodh = ''.join(f'<li><a class="pro" href="{h}"><span class="pro-t">{e(t)}</span><span class="pro-d">{e(d)}</span><span class="pro-a" aria-hidden="true">{ARROW}</span></a></li>' for t, d, h in production)
 
     def brand(n, u):
         if u:
@@ -280,12 +289,12 @@ def page_index():
     body = f'''<section class="hero" aria-labelledby="hero-title">
 <div class="wrap hero-grid">
 <div class="hero-copy">
-<p class="eyebrow enter">Social media and performance marketing, Gurugram, open to remote or hybrid</p>
+<p class="eyebrow enter">Marketing and content services, Gurugram</p>
 <h1 id="hero-title" class="disp enter enter-2">Social and paid media that brings in <span class="accent">leads.</span></h1>
-<p class="lede enter enter-3">I run Meta and Google Ads, manage social channels and look after clients end to end. Nearly two years across agency, freelance and in-house roles, for brands in India, the USA and the UAE.</p>
+<p class="lede enter enter-3">I run Meta and Google Ads, manage social channels and make the content behind them, from shoots and event coverage to edits, thumbnails and creatives. Nearly two years of work for brands in India, the USA and the UAE.</p>
 <div class="cta-row enter enter-4">
 <a class="btn btn-solid btn-lg" href="work.html">See my work {ARROW}</a>
-<a class="btn btn-line btn-lg" href="{CV}" download>Download CV</a>
+<a class="btn btn-line btn-lg" href="#services">See services</a>
 </div>
 <p class="note enter enter-4">Clients include Rapido, Kapiva, Signature Global and TPH Group.</p>
 </div>
@@ -343,11 +352,14 @@ def page_index():
 </div>
 </section>
 
-<section class="sec" aria-labelledby="do-title" style="padding-top:0">
+<section class="sec" id="services" aria-labelledby="do-title" style="padding-top:0">
 <div class="wrap">
-<div class="sec-head"><h2 id="do-title" class="disp h2">What I do</h2><p class="muted" style="max-width:440px">Three jobs I can own from day one, backed by the video and design skills that keep content moving.</p></div>
+<div class="sec-head"><h2 id="do-title" class="disp h2">Services</h2><p class="muted" style="max-width:460px">From a full campaign to a single edit. Hire me for one piece or the whole job.</p></div>
+<h3 class="tier-h">Growth</h3>
 <div class="grid-3">{svch}</div>
-<p class="band">Also on the team: short-form and YouTube editing, thumbnails and campaign creatives in Premiere Pro, DaVinci Resolve and Canva, plus reporting in Excel and SQL and automations in n8n.</p>
+<h3 class="tier-h">Production</h3>
+<ul class="pros">{prodh}</ul>
+<p class="band">Behind it all: weekly reporting in Excel and SQL, CRM upkeep in HubSpot and automations in n8n. Edits in Premiere Pro and DaVinci Resolve, design in Canva.</p>
 </div>
 </section>
 
@@ -392,7 +404,7 @@ def page_work():
 <div class="wrap" style="display:flex;justify-content:space-between;align-items:flex-end;gap:var(--s6);flex-wrap:wrap">
 <div style="display:flex;flex-direction:column;gap:var(--s4);max-width:780px">
 <h1 class="disp">Work</h1>
-<p class="lede">Campaigns, channel growth, brand and creator edits, thumbnails and creatives. Pick the kind of work you are hiring for.</p>
+<p class="lede">Campaigns, channel growth, brand and creator edits, thumbnails and creatives. Pick the kind of work you need.</p>
 </div>
 </div>
 </section>

@@ -263,6 +263,18 @@ a:hover{color:var(--accent)}
 .svc h3{font-size:var(--fs-h3)}
 .svc p{font-size:var(--fs-sm);color:var(--text-2)}
 .svc .tools{font-size:var(--fs-xs);color:var(--text-3);border-top:1px solid var(--line);padding-top:var(--s3);margin-top:auto}
+.svc-go{display:inline-flex;align-items:center;gap:var(--s2);font-size:var(--fs-sm);font-weight:600;color:var(--accent)}
+.svc-go svg{transition:transform var(--t-fast) var(--ease)}
+.svc-go:hover svg{transform:translateX(3px)}
+.tier-h{font:600 var(--fs-sm)/1 var(--f-body);color:var(--text-3);margin:0 0 var(--s4)}
+.grid-3+.tier-h{margin-top:var(--s7)}
+.pros{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 var(--s6);border-top:1px solid var(--line)}
+.pro{display:grid;grid-template-columns:minmax(0,15ch) minmax(0,1fr) auto;gap:var(--s4);align-items:baseline;padding:var(--s4) 0;border-bottom:1px solid var(--line);color:var(--text);text-decoration:none}
+.pro-t{font:700 17px/1.25 var(--f-disp);letter-spacing:-.01em}
+.pro-d{font-size:var(--fs-sm);color:var(--text-2);line-height:1.5}
+.pro-a{color:var(--text-3);align-self:center;transition:color var(--t-fast) var(--ease),transform var(--t-fast) var(--ease)}
+.pro:hover .pro-a{color:var(--accent);transform:translateX(3px)}
+.pro:hover .pro-t{color:var(--accent)}
 .tags{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:var(--s2)}
 .tags li{font-size:var(--fs-xs);padding:4px 10px;border-radius:var(--r-pill);background:var(--surface-2);color:var(--text-2)}
 .band{margin-top:var(--s5);padding:var(--s4) var(--s5);border-radius:var(--r-md);background:var(--surface);border:1px solid var(--line);color:var(--text-2);font-size:var(--fs-sm)}
@@ -501,6 +513,11 @@ tr.total td{font-weight:700;border-bottom:none;background:var(--surface-2)}
   .gbars{--k:.8}
 }
 @media (max-width:760px){
+  .pros{grid-template-columns:1fr}
+  .pro{grid-template-columns:minmax(0,1fr) auto}
+  .pro-d{grid-column:1;grid-row:2}
+  .pro-a{grid-row:1/3;grid-column:2}
+
   .kpis .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
   .kpis .k{border-right:none!important;border-bottom:1px solid var(--line)!important}
   .kpis .k:nth-child(2n){border-right:1px solid var(--line)!important}
