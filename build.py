@@ -195,7 +195,7 @@ REEL_GROUPS = [  # (group, [(id, title, meta)]); strongest-looking first in each
 ]
 REELS = [r for _, g in REEL_GROUPS for r in g]
 FILMS = [
-    ('VAG4zxmpw38', 'Bageshwar Dham', 'Spiritual and events, video edit'),
+    ('VAG4zxmpw38', 'Bageshwar Dham', 'Full event coverage and video'),
     ('VAGmt40SPCY', 'Eyewear portrait film', 'Creator campaign'),
     ('VAGmt0Tu-ZU', "U'th Times channel intro", 'Intro sequence'),
     ('VAGoEnGz3QU', 'Olmec civilisation', 'Long-form YouTube'),
@@ -225,6 +225,19 @@ LATEST = [  # three latest uploads on youtube.com/@Revcoreautos, checked 17 Nov 
     ('TGNPYOFgqsw', 'Swift crashed into Thar Roxx: full front damaged'),
     ('yCYkZWGk7FE', 'Brand new Thar Roxx hit by Swift: major damage'),
 ]
+TAKE1_SHORTS = [  # five most-viewed TAKE1 videos uploaded before 16 Aug 2026 (youtube.com/@TAKE1.Public, checked 18 Nov 2026)
+    ('hKz-0Qub0aU', "When guests come over and mom isn't home", '33K'),
+    ('fe0AIU3xy1w', 'Caught watching Dhurandhar 2 alone', '31K'),
+    ('iS-RjPsgIb8', 'Boys on result day', '30K'),
+    ('xtL4BLKURc8', 'When Chor is Sachha Deshbhakt', '25K'),
+    ('T83rH4BCKbM', 'The ATM cancel button scam', '24K'),
+]
+
+
+def short_cards(items):
+    return ''.join(f'<a class="yt" href="https://www.youtube.com/shorts/{v}" target="_blank" rel="noopener"><span class="yt-ph"><img src="https://i.ytimg.com/vi/{v}/oar2.jpg" alt="" width="1080" height="1920" loading="lazy"><span class="play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span><span class="yt-t">{e(ti)}</span><span class="yt-l">{n} views on YouTube</span></a>' for v, ti, n in items)
+
+
 SG = [('IMG_8289', 'A location that upgrades how you live'), ('IMG_8299', 'Grand arrival'), ('IMG_8301', 'A balcony away'), ('IMG_8290', 'A lagoon-style pool')]
 
 CLIENTS = [
@@ -267,7 +280,7 @@ def page_index():
     production = [
         ('Video editing', 'Reels, brand and app ads, creator and UGC edits, and long-form YouTube.', 'work.html#video'),
         ('Shoots and original content', 'Skits and short stories, planned, shot, directed and edited.', 'work.html#video'),
-        ('Event coverage', 'Event and hospitality videos, from large gatherings to hospitality nights.', 'work.html#video'),
+        ('Event coverage', 'Full event coverage and video, like Bageshwar Dham, plus hospitality event reels.', 'work.html#video'),
         ('Property films', 'Walkthroughs and development films for real-estate projects.', 'work.html#video'),
         ('YouTube thumbnails', 'Click-worthy thumbnails and channel content for RevCore Autos.', 'work.html#creative'),
         ('Static creatives and ad design', 'Campaign creatives and social posts, like the Signature Global set.', 'work.html#creative'),
@@ -331,7 +344,18 @@ def page_index():
 <ul class="wrap">{proofh}</ul>
 </section>
 
-<section class="sec" aria-labelledby="work-title">
+<section class="sec" id="services" aria-labelledby="do-title">
+<div class="wrap">
+<div class="sec-head"><h2 id="do-title" class="disp h2">Services</h2><p class="muted" style="max-width:460px">From a full campaign to a single edit. Hire me for one piece or the whole job.</p></div>
+<h3 class="tier-h">Growth</h3>
+<div class="grid-3">{svch}</div>
+<h3 class="tier-h">Production</h3>
+<ul class="pros">{prodh}</ul>
+<p class="band">Behind it all: weekly reporting in Excel and SQL, CRM upkeep in HubSpot and automations in n8n. Edits in Premiere Pro and DaVinci Resolve, design in Canva.</p>
+</div>
+</section>
+
+<section class="sec" aria-labelledby="work-title" style="padding-top:0">
 <div class="wrap">
 <div class="sec-head"><h2 id="work-title" class="disp h2">Selected work</h2><a class="link-strong" href="work.html">All work {ARROW}</a></div>
 <div class="duo">
@@ -352,16 +376,6 @@ def page_index():
 </div>
 </section>
 
-<section class="sec" id="services" aria-labelledby="do-title" style="padding-top:0">
-<div class="wrap">
-<div class="sec-head"><h2 id="do-title" class="disp h2">Services</h2><p class="muted" style="max-width:460px">From a full campaign to a single edit. Hire me for one piece or the whole job.</p></div>
-<h3 class="tier-h">Growth</h3>
-<div class="grid-3">{svch}</div>
-<h3 class="tier-h">Production</h3>
-<ul class="pros">{prodh}</ul>
-<p class="band">Behind it all: weekly reporting in Excel and SQL, CRM upkeep in HubSpot and automations in n8n. Edits in Premiere Pro and DaVinci Resolve, design in Canva.</p>
-</div>
-</section>
 
 <section class="sec" aria-labelledby="clients-title" style="padding-top:0">
 <div class="wrap">
@@ -395,7 +409,7 @@ def page_work():
     thumbs = ''.join(itile(f'assets/{f}', t, below=True) for f, t in THUMBS)
     latest = ''.join(f'<a class="yt" href="https://www.youtube.com/watch?v={v}" target="_blank" rel="noopener"><span class="yt-ph"><img src="https://i.ytimg.com/vi/{v}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy"><span class="play" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></span><span class="yt-t">{e(ti)}</span><span class="yt-l">Watch on YouTube</span></a>' for v, ti in LATEST)
     sg = ''.join(itile(f'assets/creatives/{f}.webp', t, ratio='r916', below=True) for f, t in SG)
-    counts = {'all': 1 + 4 + len(UTH_VIDEOS) + len(REELS) + len(FILMS) + len(LATEST) + len(THUMBS) + len(SG), 'performance': 1, 'social': 4 + len(UTH_VIDEOS),
+    counts = {'all': 1 + 4 + len(UTH_VIDEOS) + len(TAKE1_SHORTS) + len(REELS) + len(FILMS) + len(LATEST) + len(THUMBS) + len(SG), 'performance': 1, 'social': 4 + len(UTH_VIDEOS) + len(TAKE1_SHORTS),
               'video': len(REELS) + len(FILMS) + len(LATEST), 'creative': len(THUMBS) + len(SG)}
     chips = [('all', 'All work'), ('performance', 'Performance marketing'), ('social', 'Social media'), ('video', 'Video'), ('creative', 'Thumbnails & creatives')]
     chiph = ''.join(f'<button class="chip" type="button" data-filter="{k}" aria-pressed="{"true" if k == "all" else "false"}">{t} <small>{counts[k]}</small></button>' for k, t in chips)
@@ -432,6 +446,8 @@ def page_work():
 <div class="stat-card" data-reveal><span class="sc-k">TPH Group, Dubai</span><p class="disp sc-h">Social for a services group</p><p class="soft">Content strategy and publishing that turned workforce, facility and cleaning services into clear posts for homes and businesses.</p><a class="link-strong sc-link" href="https://www.instagram.com/yallamaids/" target="_blank" rel="noopener">See on Instagram {ARROW}</a></div>
 <div class="stat-card" data-reveal><span class="sc-k">Artist pages</span><p class="disp sc-h">Social and digital PR</p><p class="soft">Managed social content and digital PR for music artist pages as part of freelance work.</p></div>
 </div>
+<h3 class="sub-h">TAKE1 shorts I worked on <small>most viewed</small></h3>
+<div class="yt-grid yt-shorts">{short_cards(TAKE1_SHORTS)}</div>
 </section>
 
 <section class="wsec" data-cat="video" aria-labelledby="w-reels">
@@ -440,7 +456,7 @@ def page_work():
 </section>
 
 <section class="wsec" data-cat="video" aria-labelledby="w-films">
-<div class="wsec-head"><h2 id="w-films" class="disp">Films and long-form</h2><p>Event edits, campaign films, intros, YouTube explainers and property films.</p></div>
+<div class="wsec-head"><h2 id="w-films" class="disp">Films and long-form</h2><p>Full event coverage, campaign films, intros, YouTube explainers and property films.</p></div>
 <div class="wide-grid">{films}</div>
 </section>
 
@@ -673,7 +689,7 @@ def page_about():
 <div style="display:flex;flex-direction:column;gap:var(--s4)" class="soft">
 <p>I studied Electrical and Electronics Engineering at MAIT, Delhi, and found my way into marketing with the analytical habits intact.</p>
 <p>For nearly two years I've run Meta and Google Ads, managed social channels and been the person clients call, across agency, freelance and in-house roles. I track numbers in Excel and SQL, keep pipelines in HubSpot and automate the repetitive parts with n8n.</p>
-<p>Video and design are strengths I bring along, not the whole story.</p>
+<p>I also shoot, cover events, edit and design, so the content behind a campaign gets made, not just planned.</p>
 </div>
 </div>
 </section>
@@ -683,7 +699,7 @@ def page_about():
 <ol style="margin:0;padding:0;list-style:none;border-top:1px solid var(--line)">{jh}</ol>
 </div></section>
 
-<section aria-labelledby="skills" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap sec">
+<section class="sec" aria-labelledby="skills" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
 <h2 id="skills" class="disp h2" style="margin-bottom:var(--s6)">Skills and tools</h2>
 <div class="grid-4">{skh}</div>
 </div></section>
